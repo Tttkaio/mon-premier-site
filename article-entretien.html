@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entretien vélo : les 5 gestes essentiels — Velora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        :root{--primary:#3643BA;--secondary:#3643BA;--accent:#e8ecff;--accent-green:#54CFA1;--bg:#f7f8fc;--bg-alt:#eef0f8;--text:#1a1a2e;--text-muted:#5a5a7a;--text-light:#8e8ea8;--card-bg:#fff;--card-border:rgba(54,67,186,.08);--nav-bg:rgba(247,248,252,.94);--radius:12px;--transition:.4s cubic-bezier(.25,.46,.45,.94)}
+        [data-theme="dark"]{--primary:#6b78e8;--secondary:#6b78e8;--accent:#1e2048;--accent-green:#54CFA1;--bg:#0c0d1e;--bg-alt:#12132e;--text:#e0e0f0;--text-muted:#9090b8;--text-light:#606088;--card-bg:#161838;--card-border:rgba(107,120,232,.1);--nav-bg:rgba(12,13,30,.94)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        .navbar-custom{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:.8rem 0;position:sticky;top:0;z-index:1050}
+        .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--text);letter-spacing:3px;text-transform:uppercase}
+        .nav-brand span{color:var(--secondary)}
+        .btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:gap .3s}
+        .btn-back:hover{gap:12px;color:var(--secondary)}
+        .article-header{padding:80px 0 40px;text-align:center}
+        .article-badge{display:inline-block;padding:6px 18px;background:var(--accent);border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);margin-bottom:1.5rem}
+        .article-header h1{font-size:clamp(2rem,5vw,3.2rem);max-width:800px;margin:0 auto 1rem}
+        .article-meta{color:var(--text-muted);font-size:.9rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+        .article-content{max-width:750px;margin:0 auto;padding:0 1rem 80px}
+        .article-content p{font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.5rem}
+        .article-content h2{font-size:1.6rem;margin:2.5rem 0 1rem;color:var(--text)}
+        .article-content h3{font-size:1.25rem;margin:2rem 0 .8rem;color:var(--text)}
+        .article-content ul,.article-content ol{padding-left:1.5rem;margin-bottom:1.5rem}
+        .article-content li{font-size:1rem;line-height:1.8;color:var(--text-muted);margin-bottom:.5rem}
+        .article-content strong{color:var(--text)}
+        .article-content blockquote{border-left:4px solid var(--secondary);padding:1rem 1.5rem;margin:2rem 0;background:var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-style:italic;color:var(--text)}
+        .tip-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;margin:2rem 0}
+        .tip-box-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;color:var(--secondary);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+        .tip-box p{margin:0;font-size:.95rem}
+        .step-number{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;background:var(--secondary);color:#fff;border-radius:50%;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-right:12px;flex-shrink:0}
+        .step-header{display:flex;align-items:center;margin:2.5rem 0 1rem}
+        .article-nav{display:flex;justify-content:space-between;align-items:center;padding:2rem 0;border-top:1px solid var(--card-border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+        .article-nav a{color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:gap .3s}
+        .article-nav a:hover{gap:10px}
+        footer{background:#0d0e2a;color:#a0a0c0;padding:30px 0;text-align:center;font-size:.85rem}
+        footer a{color:var(--secondary)}
+        .theme-toggle{background:none;border:2px solid var(--card-border);color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .theme-toggle:hover{border-color:var(--secondary);color:var(--secondary)}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="nav-brand">Velo<span>ra</span></a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')"><i class="bi bi-moon-fill"></i></button>
+                <a href="index.html" class="btn-back"><i class="bi bi-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container">
+            <span class="article-badge"><i class="bi bi-tools"></i> Entretien</span>
+            <h1>Entretien vélo : les 5 gestes essentiels</h1>
+            <div class="article-meta">
+                <span><i class="bi bi-calendar3"></i> 8 Mars 2026</span>
+                <span><i class="bi bi-clock"></i> 6 min de lecture</span>
+                <span><i class="bi bi-person"></i> Équipe Velora</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <p>
+            Un vélo bien entretenu est un vélo qui dure. Que vous rouliez tous les jours ou seulement le week-end, quelques gestes simples et réguliers suffisent à garder votre monture en parfait état. Voici les 5 vérifications indispensables que tout cycliste devrait maîtriser.
+        </p>
+
+        <div class="step-header">
+            <span class="step-number">1</span>
+            <h2 style="margin:0">Vérifier la pression des pneus</h2>
+        </div>
+        <p>
+            C'est le geste numéro un, à faire <strong>avant chaque sortie</strong>. Un pneu sous-gonflé augmente le risque de crevaison, use prématurément la jante et rend le pédalage plus difficile. À l'inverse, un pneu surgonflé réduit l'adhérence et le confort.
+        </p>
+        <p>
+            La pression recommandée est généralement indiquée sur le flanc du pneu. Voici des repères généraux :
+        </p>
+        <ul>
+            <li><strong>Vélo de route</strong> (pneus 25-28mm) : 6 à 8 bars</li>
+            <li><strong>VTT</strong> (pneus 2.0-2.4") : 1,8 à 2,5 bars</li>
+            <li><strong>Vélo de ville / VTC</strong> : 3,5 à 5 bars</li>
+            <li><strong>Vélo électrique</strong> : selon le pneu, souvent 3 à 5 bars</li>
+        </ul>
+        <p>
+            Investissez dans une <strong>pompe à pied avec manomètre</strong> (à partir de 25 €). C'est l'outil le plus important de votre atelier maison. Les mini-pompes de terrain ne permettent pas d'atteindre une pression optimale.
+        </p>
+
+        <div class="step-header">
+            <span class="step-number">2</span>
+            <h2 style="margin:0">Nettoyer et lubrifier la chaîne</h2>
+        </div>
+        <p>
+            La chaîne est le composant le plus sollicité de votre vélo. Sale et sèche, elle s'use rapidement et entraîne l'usure prématurée de la cassette et des plateaux — des pièces bien plus coûteuses à remplacer.
+        </p>
+        <p><strong>Fréquence recommandée :</strong></p>
+        <ul>
+            <li>Après chaque sortie sous la pluie ou sur chemins boueux</li>
+            <li>Toutes les 200 à 300 km en conditions normales</li>
+            <li>Au minimum une fois par mois si vous roulez régulièrement</li>
+        </ul>
+        <p><strong>La méthode en 3 étapes :</strong></p>
+        <ol>
+            <li><strong>Dégraisser</strong> : Appliquez un dégraissant vélo sur la chaîne en la faisant tourner. Utilisez une brosse pour bien frotter les maillons. Rincez à l'eau claire.</li>
+            <li><strong>Sécher</strong> : Essuyez la chaîne avec un chiffon propre et sec. Laissez sécher quelques minutes.</li>
+            <li><strong>Lubrifier</strong> : Appliquez une goutte de lubrifiant sur chaque maillon en faisant tourner le pédalier lentement. Essuyez l'excédent avec un chiffon — une chaîne trop grasse attire la poussière.</li>
+        </ol>
+
+        <div class="tip-box">
+            <div class="tip-box-title"><i class="bi bi-lightbulb"></i> Huile sèche ou huile humide ?</div>
+            <p>En saison sèche (comme à Libreville de juin à septembre), utilisez un lubrifiant sec — il attire moins la poussière. En saison des pluies, optez pour un lubrifiant humide qui résiste mieux à l'eau.</p>
+        </div>
+
+        <div class="step-header">
+            <span class="step-number">3</span>
+            <h2 style="margin:0">Contrôler les freins</h2>
+        </div>
+        <p>
+            Des freins efficaces sont une question de <strong>sécurité vitale</strong>. Avant chaque sortie, faites un test simple : en marchant à côté du vélo, serrez chaque levier de frein. La roue doit se bloquer fermement sans que le levier ne touche le guidon.
+        </p>
+        <p><strong>Freins à patins :</strong></p>
+        <ul>
+            <li>Vérifiez l'épaisseur des patins — les rainures d'usure doivent être visibles</li>
+            <li>Assurez-vous que les patins sont bien alignés sur la jante (pas sur le pneu !)</li>
+            <li>Remplacez les patins quand les rainures ont disparu (environ tous les 2 000 à 4 000 km)</li>
+        </ul>
+        <p><strong>Freins à disque :</strong></p>
+        <ul>
+            <li>Vérifiez l'épaisseur des plaquettes — minimum 1 mm de garniture</li>
+            <li>Écoutez : un bruit de grincement métallique signale des plaquettes usées</li>
+            <li>Ne touchez jamais les disques avec les doigts — le gras réduit l'efficacité du freinage</li>
+            <li>Durée de vie moyenne : 3 000 à 8 000 km selon les conditions</li>
+        </ul>
+
+        <div class="step-header">
+            <span class="step-number">4</span>
+            <h2 style="margin:0">Inspecter les roues et les rayons</h2>
+        </div>
+        <p>
+            Soulevez votre vélo et faites tourner chaque roue. Elle doit tourner librement, sans frottement contre les patins de frein ou le cadre. Si la roue oscille latéralement (on appelle ça un "voile"), elle nécessite un dévoilage.
+        </p>
+        <p>
+            Vérifiez aussi la tension des rayons en les pinçant deux par deux. Ils doivent avoir une tension uniforme et ne pas être lâches. Un rayon cassé ou détendu peut provoquer un voile rapide de la roue et doit être réparé sans tarder.
+        </p>
+        <p>
+            Enfin, inspectez les <strong>pneus</strong> : recherchez des coupures, des objets incrustés (verre, épines) ou des zones d'usure anormales. Un pneu avec une bande de roulement lisse au centre a fait son temps et doit être remplacé.
+        </p>
+
+        <div class="step-header">
+            <span class="step-number">5</span>
+            <h2 style="margin:0">Nettoyer le vélo complet</h2>
+        </div>
+        <p>
+            Un nettoyage complet toutes les 2 à 4 semaines (ou après chaque sortie boueuse) permet de repérer les problèmes et de prolonger la durée de vie de tous les composants.
+        </p>
+        <p><strong>La méthode complète :</strong></p>
+        <ol>
+            <li><strong>Rincer</strong> : À l'eau claire avec un tuyau d'arrosage. <strong>Jamais de jet haute pression</strong> — cela pousse l'eau dans les roulements et les détruit.</li>
+            <li><strong>Savonner</strong> : Utilisez un produit nettoyant vélo ou du liquide vaisselle dilué. Frottez avec une éponge douce le cadre, les roues, la selle.</li>
+            <li><strong>Brosser</strong> : Utilisez une brosse dure pour la cassette, les dérailleurs et les recoins difficiles d'accès.</li>
+            <li><strong>Rincer à nouveau</strong> : Eau claire pour éliminer tout résidu de savon.</li>
+            <li><strong>Sécher</strong> : Essuyez avec un chiffon microfibre. Faites tourner les roues pour expulser l'eau des freins.</li>
+            <li><strong>Lubrifier</strong> : Terminez toujours par la lubrification de la chaîne et des câbles.</li>
+        </ol>
+
+        <div class="tip-box">
+            <div class="tip-box-title"><i class="bi bi-exclamation-triangle"></i> Erreur fréquente</div>
+            <p>Ne retournez jamais votre vélo pour le nettoyer si vous avez des freins à disque hydrauliques. L'air peut s'introduire dans le circuit et nécessiter une purge. Utilisez plutôt un pied d'atelier ou appuyez le vélo contre un mur.</p>
+        </div>
+
+        <h2>Quand amener son vélo chez un professionnel ?</h2>
+        <p>
+            Certaines opérations nécessitent un atelier spécialisé. Prévoyez une <strong>révision complète une fois par an</strong> ou tous les 3 000 km. Un technicien vérifiera les roulements (direction, pédalier, moyeux), la tension des câbles, le réglage des dérailleurs et l'état général du cadre.
+        </p>
+        <p>
+            Chez Velora à Libreville, nos techniciens experts sont disponibles pour l'entretien courant et les révisions complètes. Une révision standard prend généralement 24 à 48 heures et coûte entre 40 et 80 € selon les interventions nécessaires.
+        </p>
+
+        <h2>Récapitulatif : votre checklist hebdomadaire</h2>
+        <ul>
+            <li>Pression des pneus — avant chaque sortie</li>
+            <li>Test des freins — avant chaque sortie</li>
+            <li>État de la chaîne — toutes les semaines</li>
+            <li>Lubrification chaîne — toutes les 200-300 km</li>
+            <li>Nettoyage complet — toutes les 2-4 semaines</li>
+            <li>Inspection roues/rayons — toutes les 2 semaines</li>
+            <li>Révision professionnelle — 1 fois par an</li>
+        </ul>
+
+        <blockquote>
+            "5 minutes d'entretien après chaque sortie, c'est des centaines d'euros d'économie sur l'année." — L'atelier Velora
+        </blockquote>
+
+        <div class="article-nav">
+            <a href="article-velo-route.html"><i class="bi bi-arrow-left"></i> Article précédent</a>
+            <a href="article-pistes-libreville.html">Article suivant <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Velora. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

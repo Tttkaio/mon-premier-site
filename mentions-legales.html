@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales — Velora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        :root{--primary:#3643BA;--secondary:#3643BA;--accent:#e8ecff;--accent-green:#54CFA1;--bg:#f7f8fc;--bg-alt:#eef0f8;--text:#1a1a2e;--text-muted:#5a5a7a;--text-light:#8e8ea8;--card-bg:#fff;--card-border:rgba(54,67,186,.08);--nav-bg:rgba(247,248,252,.94);--radius:12px;--transition:.4s cubic-bezier(.25,.46,.45,.94)}
+        [data-theme="dark"]{--primary:#6b78e8;--secondary:#6b78e8;--accent:#1e2048;--accent-green:#54CFA1;--bg:#0c0d1e;--bg-alt:#12132e;--text:#e0e0f0;--text-muted:#9090b8;--text-light:#606088;--card-bg:#161838;--card-border:rgba(107,120,232,.1);--nav-bg:rgba(12,13,30,.94)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        .navbar-custom{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:.8rem 0;position:sticky;top:0;z-index:1050}
+        .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--text);letter-spacing:3px;text-transform:uppercase}
+        .nav-brand span{color:var(--secondary)}
+        .btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:gap .3s}
+        .btn-back:hover{gap:12px}
+        .theme-toggle{background:none;border:2px solid var(--card-border);color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .theme-toggle:hover{border-color:var(--secondary);color:var(--secondary)}
+
+        .page-header{padding:80px 0 40px;text-align:center}
+        .page-header h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:.8rem}
+        .page-header p{color:var(--text-muted);font-size:1.05rem}
+
+        .legal-content{max-width:800px;margin:0 auto;padding:0 1rem 80px}
+        .legal-content p{font-size:.98rem;line-height:1.8;color:var(--text-muted);margin-bottom:1.2rem}
+        .legal-content h2{font-size:1.4rem;margin:2.5rem 0 1rem;color:var(--text);padding-bottom:.5rem;border-bottom:2px solid var(--accent)}
+        .legal-content strong{color:var(--text)}
+        .legal-content ul{padding-left:1.5rem;margin-bottom:1.2rem}
+        .legal-content li{font-size:.95rem;line-height:1.7;color:var(--text-muted);margin-bottom:.4rem}
+
+        .legal-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem}
+        .legal-card h3{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;color:var(--secondary);margin-bottom:.8rem;display:flex;align-items:center;gap:8px}
+        .legal-card p{margin-bottom:.5rem}
+        .legal-card p:last-child{margin-bottom:0}
+
+        .last-updated{text-align:center;color:var(--text-light);font-size:.85rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--card-border)}
+
+        footer{background:#0d0e2a;color:#a0a0c0;padding:30px 0;text-align:center;font-size:.85rem}
+        footer a{color:var(--secondary)}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="nav-brand">Velo<span>ra</span></a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')"><i class="bi bi-moon-fill"></i></button>
+                <a href="index.html" class="btn-back"><i class="bi bi-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Mentions Légales</h1>
+            <p>Informations légales relatives au site Velora</p>
+        </div>
+    </header>
+
+    <div class="legal-content">
+
+        <h2>1. Éditeur du site</h2>
+        <div class="legal-card">
+            <h3><i class="bi bi-building"></i> Informations sur l'entreprise</h3>
+            <p><strong>Raison sociale :</strong> Velora SARL</p>
+            <p><strong>Forme juridique :</strong> Société à Responsabilité Limitée</p>
+            <p><strong>Capital social :</strong> 5 000 000 FCFA</p>
+            <p><strong>Siège social :</strong> Boulevard Triomphal, Libreville, Gabon</p>
+            <p><strong>Numéro RCCM :</strong> GA-LBV-2024-B-12345</p>
+            <p><strong>NIF :</strong> 987654321</p>
+            <p><strong>Téléphone :</strong> +241 077 12 34 56</p>
+            <p><strong>Email :</strong> contact@velora-gabon.com</p>
+            <p><strong>Directeur de la publication :</strong> Enzo M., Gérant</p>
+        </div>
+
+        <h2>2. Hébergeur du site</h2>
+        <div class="legal-card">
+            <h3><i class="bi bi-server"></i> Informations sur l'hébergeur</h3>
+            <p><strong>Hébergeur :</strong> InfinityFree</p>
+            <p><strong>Adresse :</strong> InfinityFree Web Hosting</p>
+            <p><strong>Site web :</strong> www.infinityfree.com</p>
+        </div>
+
+        <h2>3. Propriété intellectuelle</h2>
+        <p>
+            L'ensemble des éléments constituant le site Velora (textes, images, graphismes, logo, icônes, sons, logiciels, etc.) est la propriété exclusive de Velora SARL ou de ses partenaires. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l'autorisation écrite préalable de Velora SARL.
+        </p>
+        <p>
+            Toute exploitation non autorisée du site ou de l'un quelconque des éléments qu'il contient sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions du Code de la propriété intellectuelle applicable en République Gabonaise.
+        </p>
+
+        <h2>4. Protection des données personnelles</h2>
+        <p>
+            Conformément à la loi gabonaise relative à la protection des données à caractère personnel, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.
+        </p>
+        <p><strong>Données collectées :</strong></p>
+        <ul>
+            <li>Nom et prénom (formulaire de contact)</li>
+            <li>Adresse email (formulaire de contact, newsletter)</li>
+            <li>Numéro de téléphone (formulaire de contact, optionnel)</li>
+            <li>Contenu du message (formulaire de contact)</li>
+        </ul>
+        <p><strong>Finalités du traitement :</strong></p>
+        <ul>
+            <li>Répondre à vos demandes de contact et de devis</li>
+            <li>Vous envoyer notre newsletter (avec votre consentement)</li>
+            <li>Améliorer nos services et votre expérience utilisateur</li>
+        </ul>
+        <p><strong>Durée de conservation :</strong> Vos données sont conservées pendant une durée maximale de 3 ans à compter de votre dernière interaction avec notre site.</p>
+        <p>
+            Pour exercer vos droits, vous pouvez nous contacter à l'adresse : <strong>contact@velora-gabon.com</strong> ou par courrier à l'adresse de notre siège social.
+        </p>
+
+        <h2>5. Cookies et stockage local</h2>
+        <p>
+            Le site Velora utilise le <strong>stockage local du navigateur (localStorage)</strong> pour les fonctionnalités suivantes :
+        </p>
+        <ul>
+            <li><strong>Préférence de thème</strong> (mode clair/sombre) — pour mémoriser votre choix d'affichage</li>
+            <li><strong>Panier d'achat</strong> — pour conserver les produits sélectionnés entre vos visites</li>
+            <li><strong>Inscription newsletter</strong> — pour éviter les inscriptions en double</li>
+        </ul>
+        <p>
+            Ces données sont stockées exclusivement sur votre appareil et ne sont jamais transmises à des serveurs tiers. Vous pouvez les supprimer à tout moment en effaçant les données de navigation de votre navigateur.
+        </p>
+
+        <h2>6. Limitation de responsabilité</h2>
+        <p>
+            Velora SARL s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, dont elle se réserve le droit de corriger le contenu à tout moment et sans préavis. Toutefois, Velora SARL ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site.
+        </p>
+        <p>
+            En conséquence, l'utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive. Les prix affichés sur le site sont donnés à titre indicatif et peuvent être modifiés sans préavis. Les prix définitifs sont ceux communiqués lors de la confirmation de commande.
+        </p>
+
+        <h2>7. Liens hypertextes</h2>
+        <p>
+            Le site Velora peut contenir des liens hypertextes vers d'autres sites internet. Velora SARL n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu. La présence de ces liens ne constitue pas une approbation de leur contenu par Velora SARL.
+        </p>
+
+        <h2>8. Droit applicable et juridiction</h2>
+        <p>
+            Les présentes mentions légales sont régies par le droit gabonais. En cas de litige, et après tentative de résolution amiable, les tribunaux de Libreville seront seuls compétents.
+        </p>
+
+        <h2>9. Contact</h2>
+        <div class="legal-card">
+            <h3><i class="bi bi-envelope"></i> Pour toute question</h3>
+            <p><strong>Email :</strong> contact@velora-gabon.com</p>
+            <p><strong>Téléphone :</strong> +241 077 12 34 56</p>
+            <p><strong>Adresse :</strong> Boulevard Triomphal, Libreville, Gabon</p>
+            <p><strong>Horaires :</strong> Lundi – Samedi, 8h00 – 18h00</p>
+        </div>
+
+        <div class="last-updated">
+            <p>Dernière mise à jour : 29 Mars 2026</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Velora. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

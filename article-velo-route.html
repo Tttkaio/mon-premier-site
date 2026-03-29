@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment choisir son premier vélo de route — Velora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        :root{--primary:#3643BA;--secondary:#3643BA;--accent:#e8ecff;--accent-green:#54CFA1;--bg:#f7f8fc;--bg-alt:#eef0f8;--text:#1a1a2e;--text-muted:#5a5a7a;--text-light:#8e8ea8;--card-bg:#fff;--card-border:rgba(54,67,186,.08);--nav-bg:rgba(247,248,252,.94);--radius:12px;--transition:.4s cubic-bezier(.25,.46,.45,.94)}
+        [data-theme="dark"]{--primary:#6b78e8;--secondary:#6b78e8;--accent:#1e2048;--accent-green:#54CFA1;--bg:#0c0d1e;--bg-alt:#12132e;--text:#e0e0f0;--text-muted:#9090b8;--text-light:#606088;--card-bg:#161838;--card-border:rgba(107,120,232,.1);--nav-bg:rgba(12,13,30,.94)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        .navbar-custom{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:.8rem 0;position:sticky;top:0;z-index:1050}
+        .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--text);letter-spacing:3px;text-transform:uppercase}
+        .nav-brand span{color:var(--secondary)}
+        .btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:gap .3s}
+        .btn-back:hover{gap:12px;color:var(--secondary)}
+
+        .article-header{padding:80px 0 40px;text-align:center}
+        .article-badge{display:inline-block;padding:6px 18px;background:var(--accent);border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);margin-bottom:1.5rem}
+        .article-header h1{font-size:clamp(2rem,5vw,3.2rem);max-width:800px;margin:0 auto 1rem}
+        .article-meta{color:var(--text-muted);font-size:.9rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+
+        .article-content{max-width:750px;margin:0 auto;padding:0 1rem 80px}
+        .article-content p{font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.5rem}
+        .article-content h2{font-size:1.6rem;margin:2.5rem 0 1rem;color:var(--text)}
+        .article-content h3{font-size:1.25rem;margin:2rem 0 .8rem;color:var(--text)}
+        .article-content ul{padding-left:1.5rem;margin-bottom:1.5rem}
+        .article-content li{font-size:1rem;line-height:1.8;color:var(--text-muted);margin-bottom:.5rem}
+        .article-content strong{color:var(--text)}
+        .article-content blockquote{border-left:4px solid var(--secondary);padding:1rem 1.5rem;margin:2rem 0;background:var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-style:italic;color:var(--text)}
+
+        .tip-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;margin:2rem 0}
+        .tip-box-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;color:var(--secondary);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+        .tip-box p{margin:0;font-size:.95rem}
+
+        .article-nav{display:flex;justify-content:space-between;align-items:center;padding:2rem 0;border-top:1px solid var(--card-border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+        .article-nav a{color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:gap .3s}
+        .article-nav a:hover{gap:10px}
+
+        footer{background:#0d0e2a;color:#a0a0c0;padding:30px 0;text-align:center;font-size:.85rem}
+        footer a{color:var(--secondary)}
+
+        .theme-toggle{background:none;border:2px solid var(--card-border);color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .theme-toggle:hover{border-color:var(--secondary);color:var(--secondary)}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="nav-brand">Velo<span>ra</span></a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')"><i class="bi bi-moon-fill"></i></button>
+                <a href="index.html" class="btn-back"><i class="bi bi-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container">
+            <span class="article-badge"><i class="bi bi-bicycle"></i> Guide Débutant</span>
+            <h1>Comment choisir son premier vélo de route</h1>
+            <div class="article-meta">
+                <span><i class="bi bi-calendar3"></i> 15 Mars 2026</span>
+                <span><i class="bi bi-clock"></i> 8 min de lecture</span>
+                <span><i class="bi bi-person"></i> Équipe Velora</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <p>
+            Vous rêvez de vous lancer dans le cyclisme sur route mais vous ne savez pas par où commencer ? Pas de panique ! Choisir son premier vélo de route peut sembler intimidant face à la multitude d'options disponibles, mais en comprenant quelques critères essentiels, vous trouverez rapidement la monture idéale.
+        </p>
+
+        <h2>1. Définir votre budget</h2>
+        <p>
+            Le premier critère à considérer est évidemment votre budget. Un vélo de route d'entrée de gamme correct commence aux alentours de <strong>400 à 600 €</strong>, comme le Van Rysel EDR Easy chez Decathlon. Pour un vélo avec des composants plus performants (Shimano 105, freins à disque hydrauliques), prévoyez entre <strong>900 et 1 500 €</strong>. Au-delà, vous entrez dans le domaine des cadres carbone et des transmissions haut de gamme.
+        </p>
+        <p>
+            Notre conseil : ne vous ruinez pas pour un premier vélo. Un modèle en aluminium entre 800 et 1 200 € vous offrira d'excellentes sensations et vous permettra de confirmer votre passion avant d'investir davantage.
+        </p>
+
+        <div class="tip-box">
+            <div class="tip-box-title"><i class="bi bi-lightbulb"></i> Astuce Velora</div>
+            <p>Pensez à inclure dans votre budget les accessoires indispensables : casque (50-100 €), cuissard rembourré (40-80 €), kit de réparation (20 €) et éclairages (30 €). Comptez environ 150 à 250 € supplémentaires.</p>
+        </div>
+
+        <h2 id="taille-cadre">2. Choisir la bonne taille de cadre</h2>
+        <p>
+            C'est sans doute <strong>le critère le plus important</strong>. Un vélo mal ajusté à votre morphologie sera inconfortable et pourra même causer des blessures. La taille du cadre dépend principalement de votre hauteur et de la longueur de vos jambes (l'entrejambe).
+        </p>
+        <p>Voici un guide général des tailles :</p>
+        <ul>
+            <li><strong>XS (47-49 cm)</strong> : pour les cyclistes de 1,55 m à 1,65 m</li>
+            <li><strong>S (50-52 cm)</strong> : pour les cyclistes de 1,65 m à 1,73 m</li>
+            <li><strong>M (53-55 cm)</strong> : pour les cyclistes de 1,73 m à 1,80 m</li>
+            <li><strong>L (56-58 cm)</strong> : pour les cyclistes de 1,80 m à 1,88 m</li>
+            <li><strong>XL (59-61 cm)</strong> : pour les cyclistes de plus de 1,88 m</li>
+        </ul>
+        <p>
+            Si vous êtes entre deux tailles, optez pour la plus petite si vous recherchez un vélo nerveux et réactif, ou la plus grande pour plus de confort sur les longues distances.
+        </p>
+
+        <blockquote>
+            "Un vélo à la bonne taille, c'est 80% du confort. Le reste, ce sont les réglages fins de la selle et du cintre." — L'équipe Velora
+        </blockquote>
+
+        <h2>3. Cadre aluminium ou carbone ?</h2>
+        <p>
+            Pour un premier vélo, l'<strong>aluminium</strong> est le choix le plus judicieux. Il offre un excellent rapport qualité-prix, une bonne rigidité pour le pédalage et une durabilité remarquable. Les cadres alu modernes, comme ceux de la gamme Van Rysel EDR AF, sont conçus avec des tubes à épaisseur variable pour optimiser le confort sans sacrifier la performance.
+        </p>
+        <p>
+            Le <strong>carbone</strong> est plus léger (cadre de 800g à 1000g contre 1300g à 1600g en alu) et offre un meilleur filtrage des vibrations. Cependant, il est plus cher et plus fragile en cas de choc. À réserver pour un deuxième vélo, quand vous aurez confirmé votre pratique.
+        </p>
+
+        <h2>4. Comprendre les groupes de transmission</h2>
+        <p>
+            Le groupe de transmission, c'est l'ensemble des composants qui permettent de changer de vitesse et de freiner. Chez Shimano, le principal fabricant, voici la hiérarchie du plus accessible au plus performant :
+        </p>
+        <ul>
+            <li><strong>Shimano Claris</strong> (2x8 vitesses) : idéal pour débuter, fiable et économique</li>
+            <li><strong>Shimano Sora</strong> (2x9 vitesses) : un cran au-dessus, plus fluide</li>
+            <li><strong>Shimano Tiagra</strong> (2x10 vitesses) : excellent rapport qualité-prix pour les cyclistes réguliers</li>
+            <li><strong>Shimano 105</strong> (2x11 ou 2x12 vitesses) : le choix référence des cyclistes sportifs, composants très proches du haut de gamme</li>
+            <li><strong>Shimano Ultegra / Dura-Ace</strong> : réservés aux compétiteurs et passionnés</li>
+        </ul>
+        <p>
+            Pour un premier vélo, un groupe <strong>Tiagra ou 105</strong> constitue le meilleur investissement. Vous bénéficierez de changements de vitesse précis et d'une fiabilité à toute épreuve.
+        </p>
+
+        <h2>5. Freins à patins ou freins à disque ?</h2>
+        <p>
+            Les <strong>freins à disque</strong> sont devenus la norme sur les vélos de route modernes. Ils offrent un freinage plus puissant, plus progressif et plus fiable par temps de pluie. Les freins à disque hydrauliques sont particulièrement recommandés pour leur dosage exceptionnel.
+        </p>
+        <p>
+            Les <strong>freins à patins</strong> restent pertinents pour les budgets serrés et les puristes qui apprécient la légèreté (le vélo sera environ 300 à 500g plus léger). Ils sont aussi plus simples à entretenir.
+        </p>
+
+        <div class="tip-box">
+            <div class="tip-box-title"><i class="bi bi-shield-check"></i> Sécurité d'abord</div>
+            <p>Quel que soit le type de freinage, vérifiez toujours l'état de vos freins avant chaque sortie. Des plaquettes ou patins usés réduisent considérablement votre capacité de freinage.</p>
+        </div>
+
+        <h2>6. Les pneus : un élément souvent négligé</h2>
+        <p>
+            La largeur des pneus influence considérablement le confort et la performance. La tendance actuelle est aux pneus plus larges, et c'est une bonne chose pour les débutants :
+        </p>
+        <ul>
+            <li><strong>25 mm</strong> : le standard classique, bon compromis vitesse/confort</li>
+            <li><strong>28 mm</strong> : plus confortable, idéal pour les routes abîmées</li>
+            <li><strong>30-32 mm</strong> : maximum de confort, parfait pour les débutants et les longues distances</li>
+        </ul>
+        <p>
+            Nous recommandons de commencer avec des pneus de <strong>28 ou 32 mm</strong>. Vous pourrez toujours passer à des pneus plus fins plus tard si vous cherchez plus de vitesse.
+        </p>
+
+        <h2>7. Nos recommandations chez Velora</h2>
+        <p>
+            Voici nos trois modèles coup de cœur pour débuter sur la route en 2026 :
+        </p>
+        <ul>
+            <li><strong>Van Rysel EDR AF (899 €)</strong> : le meilleur rapport qualité-prix. Cadre alu, fourche carbone, Microshift Sword 2x10v, freins à disque, pneus 32mm. Parfait pour découvrir la route.</li>
+            <li><strong>Van Rysel EDR CF 105 (1 649 €)</strong> : pour ceux qui veulent directement un cadre carbone. Shimano 105 2x12v, freins à disque hydrauliques, cadre de 890g. Un investissement durable.</li>
+            <li><strong>Van Rysel NCR AF Tiagra (1 249 €)</strong> : l'alternative confort. Géométrie plus relevée, Shimano Tiagra 2x10v, idéal pour les cyclotouristes.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+            Choisir son premier vélo de route est une étape excitante. Retenez ces trois règles d'or : <strong>la bonne taille avant tout</strong>, un budget réaliste qui inclut les accessoires, et des composants fiables (Shimano Tiagra minimum). Le reste viendra avec l'expérience et les kilomètres !
+        </p>
+        <p>
+            N'hésitez pas à venir nous rendre visite à Libreville pour essayer nos modèles et bénéficier de conseils personnalisés. Bonne route !
+        </p>
+
+        <div class="article-nav">
+            <a href="index.html"><i class="bi bi-arrow-left"></i> Retour au blog</a>
+            <a href="article-entretien.html">Article suivant <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Velora. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

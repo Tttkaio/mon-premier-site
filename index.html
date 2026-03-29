@@ -1,415 +1,2689 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora — Cycles d'Exception</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        /* ═══════════════════════════════════════════
+           CSS VARIABLES & THEME SYSTEM
+           ═══════════════════════════════════════════ */
+        :root {
+            --primary: #3643BA;
+            --secondary: #3643BA;
+            --secondary-hover: #2a35a0;
+            --accent: #e8ecff;
+            --accent-green: #54CFA1;
+            --accent-green-light: #e5f9f0;
+            --bg: #f7f8fc;
+            --bg-alt: #eef0f8;
+            --text: #1a1a2e;
+            --text-muted: #5a5a7a;
+            --text-light: #8e8ea8;
+            --card-bg: #ffffff;
+            --card-border: rgba(54,67,186,0.08);
+            --nav-bg: rgba(247,248,252,0.94);
+            --footer-bg: #0d0e2a;
+            --footer-text: #a0a0c0;
+            --shadow-sm: 0 2px 8px rgba(54,67,186,0.06);
+            --shadow-md: 0 8px 30px rgba(54,67,186,0.1);
+            --shadow-lg: 0 20px 60px rgba(54,67,186,0.14);
+            --radius: 12px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gmail</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <style>
-   
-    body {
-      font-family: 'Google Sans', 'Roboto', sans-serif;
-      background: #f6f8fc;
-      font-size: 14px;
-      color: #202124;
-      overflow-x: hidden;
-    }
+        [data-theme="dark"] {
+            --primary: #6b78e8;
+            --secondary: #6b78e8;
+            --secondary-hover: #8892f0;
+            --accent: #1e2048;
+            --accent-green: #54CFA1;
+            --accent-green-light: #1a3a2e;
+            --bg: #0c0d1e;
+            --bg-alt: #12132e;
+            --text: #e0e0f0;
+            --text-muted: #9090b8;
+            --text-light: #606088;
+            --card-bg: #161838;
+            --card-border: rgba(107,120,232,0.1);
+            --nav-bg: rgba(12,13,30,0.94);
+            --footer-bg: #060714;
+            --footer-text: #7070a0;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.4);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+        }
 
-    
+        /* ═══════════════════════════════════════════
+           BASE STYLES
+           ═══════════════════════════════════════════ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ── TOPBAR ── */
-    .topbar { height: 64px; background: #f6f8fc; z-index: 100; }
-    .logo span { font-size: 22px; color: #5f6368; font-weight: 400; }
-    .search-bar {
-      background: #eaf1fb; border-radius: 24px; height: 48px;
-      transition: background .2s, box-shadow .2s;
-    
-    
-    }
-    .search-bar:hover { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
-    .search-bar input { border: none; background: transparent; outline: none; font-size: 16px; color: #202124; }
-    .search-bar .material-icons { color: #5f6368; font-size: 20px; }
-    .icon-btn {
-      width: 40px; height: 40px; border-radius: 50% !important;
-      color: #5f6368; border: none; background: transparent;
-    
-    }
-    .icon-btn:hover { background: rgba(0,0,0,.06) !important; color: #5f6368; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-    
-    /* ── SIDEBAR ── */
-    .sidebar { width: 256px; min-width: 256px; top: 64px; bottom: 0; overflow-y: auto; }
-    .compose-btn {
-      background: #c2e7ff; border-radius: 16px !important;
-      font-size: 14px; font-weight: 500; color: #001d35; border: none;
-      transition: box-shadow .2s;
-    
-    }
-    .compose-btn:hover { box-shadow: 0 1px 3px rgba(0,0,0,.2); background: #a8d8f5; color: #001d35; }
-    .nav-item-link {
-      display: flex; align-items: center; gap: 16px;
-      padding: 4px 16px; height: 32px;
-      border-radius: 0 16px 16px 0 !important;
-      margin-right: 16px; color: #202124;
-      font-size: 14px; font-weight: 500; text-decoration: none;
-    
-    }
-    .nav-item-link:hover { background: #e8eaed; color: #202124; }
-    .nav-item-link.active { background: #d3e3fd; color: #041e49; }
-    .nav-item-link .material-icons { font-size: 20px; color: #444746; }
-    .nav-item-link .nav-badge {
-      margin-left: auto; font-size: 12px; font-weight: 500;
-      color: #202124; background: transparent; padding: 0;
-    
-    }
-    .sidebar-bottom { font-size: 13px; color: #5f6368; cursor: pointer; }
-    .sidebar-bottom:hover { background: #f1f3f4; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            transition: background-color var(--transition), color var(--transition);
+        }
 
-    
-    
-    /* ── INBOX ── */
-    .inbox-area { margin-left: 256px; margin-right: 56px; }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.15;
+        }
 
-    
-    
-    /* ── TABS ── */
-    .inbox-tabs { border-radius: 12px 12px 0 0; overflow: hidden; }
-    .tab-item {
-      flex: 1; max-width: 260px; padding: 8px 16px;
-      display: flex; align-items: center; gap: 10px;
-      font-size: 13px; font-weight: 500; color: #5f6368;
-      cursor: pointer; border-bottom: 3px solid transparent;
-      transition: background .15s; background: #fff;
-    
-    }
-    .tab-item:hover { background: #f1f3f4; }
-    .tab-item.active { color: #1a73e8; border-bottom-color: #1a73e8; }
-    .tab-item .material-icons { font-size: 20px; flex-shrink: 0; }
-    .tab-text { display: flex; flex-direction: column; overflow: hidden; }
-    .tab-title { display: flex; align-items: center; gap: 6px; white-space:nowrap }
-    .tab-subtitle { font-size: 11px; font-weight: 400; color: #5f6368; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .tab-pill { border-radius: 10px !important; padding: 1px 7px !important; font-size: 11px !important; font-weight: 600 !important; white-space: nowrap; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        img { max-width: 100%; height: auto; }
 
-    
-    /* ── TOOLBAR ── */
-    .toolbar { background: #fff; border-bottom: 1px solid #e0e0e0; }
-    .toolbar .material-icons { font-size: 18px; color: #5f6368; }
+        ::selection {
+            background: var(--secondary);
+            color: #fff;
+        }
 
-    
-    /* ── EMAIL LIST ── */
-    .email-list { border-radius: 0 0 12px 12px; overflow: hidden; }
-    .email-row {
-      height: 50px; cursor: pointer;
-      transition: box-shadow .15s;
-      border-bottom: 1px solid #f1f3f4 !important;
-    
-    }
-    .email-row:hover { box-shadow: 0 2px 6px rgba(0,0,0,.1); background: #f2f6fc !important; }
-    .email-row.unread { background: #fff; }
-    .email-row.read { background: #f6f8fc; }
-    .email-row .sender {
-      width: 180px; min-width: 140px; font-weight: 700; font-size: 14px;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-    
-    }
-    .email-row .subject { font-weight: 700; font-size: 14px; }
-    .email-row .snippet { color: #5f6368; font-weight: 400; font-size: 13px; }
-    .subject-snippet { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .email-row .date { font-size: 12px; color: #5f6368; min-width: 60px; text-align: right; }
-    .email-row.unread .date { font-weight: 700; color: #202124; }
-    .email-row .star { font-size: 18px; color: #5f6368; }
+        /* ═══════════════════════════════════════════
+           SCROLLBAR
+           ═══════════════════════════════════════════ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-green); }
 
-    
+        /* ═══════════════════════════════════════════
+           NAVBAR
+           ═══════════════════════════════════════════ */
+        .navbar-custom {
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.8rem 0;
+            transition: all var(--transition);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1050;
+        }
 
-    /* ── RIGHT SIDEBAR ── */
-    .right-sidebar {
-      width: 56px; top: 64px; bottom: 0; right: 0;
-      background: #f6f8fc; border-left: 1px solid #e0e0e0; gap: 10px;
-    
-    
-    }
-    .right-icon {
-      width: 40px; height: 40px; border-radius: 50% !important;
-      cursor: pointer;
-    
-    }
-    .right-icon:hover { background: rgba(0,0,0,.06); }
+        .navbar-custom.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-sm);
+        }
 
-    .avatar-wrapper { display: inline-flex; }
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.6rem;
+            color: var(--text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
-   
+        .nav-brand span { color: var(--secondary); }
 
-    /* ── GEMINI ── */
-    .gemini-wrapper { position: relative; display: inline-flex; align-items: center; justify-content: center; }
-    .gemini-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: none; background: transparent;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-    }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
-  </style>
+        .navbar-custom .nav-link {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem !important;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .navbar-custom .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: var(--text);
+        }
+
+        .navbar-custom .nav-link:hover::after,
+        .navbar-custom .nav-link.active::after {
+            width: 20px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--card-border);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: rotate(30deg);
+        }
+
+        /* ═══════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 50%, var(--bg) 100%);
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(54,67,186,0.08) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(84,207,161,0.06) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--accent-green-light);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        [data-theme="dark"] .hero-badge {
+            background: rgba(107,120,232,0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            animation: fadeInRight 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-image img {
+            transition: transform 0.6s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ═══════════════════════════════════════════
+           BUTTONS
+           ═══════════════════════════════════════════ */
+        .btn-gold {
+            background: var(--secondary);
+            color: #fff;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(54,67,186,0.35);
+            color: #fff;
+        }
+
+        .btn-gold:hover::before { left: 100%; }
+
+        .btn-outline-dark-custom {
+            background: transparent;
+            color: var(--text);
+            padding: 14px 36px;
+            border: 2px solid var(--text);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-outline-dark-custom:hover {
+            background: var(--text);
+            color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════
+           SECTION STYLES
+           ═══════════════════════════════════════════ */
+        section { padding: 100px 0; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* ═══════════════════════════════════════════
+           ABOUT SECTION
+           ═══════════════════════════════════════════ */
+        #a-propos { background: var(--bg-alt); }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--secondary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 0.5rem;
+        }
+
+        .about-feature {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        [data-theme="dark"] .about-feature-icon {
+            background: rgba(107,120,232,0.12);
+        }
+
+        .about-feature h5 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .about-feature p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           VÉLOS / PRODUCTS
+           ═══════════════════════════════════════════ */
+        .velo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s;
+            height: 100%;
+        }
+
+        .velo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .velo-card-img {
+            height: 260px;
+            background: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .velo-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .velo-card:hover .velo-card-img img {
+            transform: scale(1.05);
+        }
+
+        .velo-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-green);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .velo-card-body {
+            padding: 1.5rem;
+        }
+
+        .velo-card-category {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .velo-card-body h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .velo-card-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .velo-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .velo-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .velo-price small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .btn-cart {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--card-border);
+            background: transparent;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-cart:hover {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: #fff;
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            padding: 8px 24px;
+            border: 2px solid var(--card-border);
+            border-radius: 50px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: rgba(54,67,186,0.08);
+        }
+
+        /* ═══════════════════════════════════════════
+           CAROUSEL / TESTIMONIALS
+           ═══════════════════════════════════════════ */
+        #temoignages { background: var(--bg-alt); }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-stars {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--text-light);
+            border: none;
+            opacity: 0.4;
+        }
+
+        .carousel-indicators .active {
+            background-color: var(--secondary);
+            opacity: 1;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        .carousel-control-prev { left: -60px; }
+        .carousel-control-next { right: -60px; }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(0.4);
+            width: 16px;
+        }
+
+        [data-theme="dark"] .carousel-control-prev-icon,
+        [data-theme="dark"] .carousel-control-next-icon {
+            filter: invert(0.7);
+        }
+
+        /* ═══════════════════════════════════════════
+           BLOG
+           ═══════════════════════════════════════════ */
+        .blog-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .blog-card-img {
+            height: 200px;
+            background: var(--bg-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-light);
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+        }
+
+        .blog-card-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-card-body h4 {
+            font-size: 1.15rem;
+            margin: 0.7rem 0;
+            line-height: 1.3;
+        }
+
+        .blog-card-body p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .blog-read-more {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 0.8rem;
+            transition: gap 0.3s;
+        }
+
+        .blog-card:hover .blog-read-more { gap: 12px; }
+
+        /* ═══════════════════════════════════════════
+           CONTACT
+           ═══════════════════════════════════════════ */
+        #contact { background: var(--bg-alt); }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+        }
+
+        .form-floating > .form-control,
+        .form-floating > .form-select {
+            background: var(--bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-floating > .form-control:focus,
+        .form-floating > .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(54,67,186,0.15);
+            background: var(--bg);
+        }
+
+        .form-floating > label {
+            color: var(--text-muted);
+        }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            color: var(--secondary);
+        }
+
+        .invalid-feedback {
+            font-size: 0.8rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        [data-theme="dark"] .contact-info-icon {
+            background: rgba(107,120,232,0.12);
+        }
+
+        .contact-info-item h6 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info-item p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           NEWSLETTER
+           ═══════════════════════════════════════════ */
+        .newsletter-section {
+            background: linear-gradient(135deg, #1a1b4b 0%, #3643BA 100%);
+            padding: 80px 0;
+            color: #fff;
+        }
+
+        [data-theme="dark"] .newsletter-section {
+            background: linear-gradient(135deg, #0d0e2a 0%, #1e2060 100%);
+        }
+
+        .newsletter-input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            padding: 14px 24px;
+            color: #fff;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.4); }
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(54,67,186,0.3);
+        }
+
+        /* ═══════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════ */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 60px 0 30px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand span { color: var(--secondary); }
+
+        footer h6 {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            margin-bottom: 1.2rem;
+        }
+
+        footer ul { list-style: none; padding: 0; }
+        footer ul li { margin-bottom: 0.6rem; }
+        footer ul li a {
+            color: var(--footer-text);
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        footer ul li a:hover { color: var(--secondary); }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: var(--footer-text);
+            margin-right: 8px;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin: 2rem 0;
+        }
+
+        /* ═══════════════════════════════════════════
+           BACK TO TOP
+           ═══════════════════════════════════════════ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(54,67,186,0.35);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover { transform: translateY(-3px); }
+
+        /* ═══════════════════════════════════════════
+           TOAST
+           ═══════════════════════════════════════════ */
+        .custom-toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-left: 4px solid var(--secondary);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 9999;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            max-width: 350px;
+        }
+
+        .custom-toast.show { transform: translateX(0); }
+
+        .custom-toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .custom-toast-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════════
+           SCROLL ANIMATIONS
+           ═══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════ */
+        @media (max-width: 991px) {
+            .carousel-control-prev, .carousel-control-next { display: none; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 767px) {
+            section { padding: 60px 0; }
+            .hero { min-height: auto; padding: 120px 0 60px; }
+            .hero h1 { font-size: 2.5rem; }
+            .testimonial-card { padding: 1.5rem; }
+            .testimonial-text { font-size: 1.05rem; }
+            .contact-form { padding: 1.5rem; }
+            .velo-card-img { height: 200px; }
+        }
+
+        /* ═══════════════════════════════════════════
+           PRELOADER
+           ═══════════════════════════════════════════ */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s, visibility 0.6s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-wheel {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--card-border);
+            border-top-color: var(--secondary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ═══════════════════════════════════════════
+           ACCESSOIRES
+           ═══════════════════════════════════════════ */
+        .accessoire-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accessoire-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .accessoire-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        [data-theme="dark"] .accessoire-icon {
+            background: rgba(107,120,232,0.12);
+        }
+
+        .accessoire-card h5 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .accessoire-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .accessoire-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .accessoire-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .accessoire-price small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ═══════════════════════════════════════════
+           CART BUTTON & SIDEBAR
+           ═══════════════════════════════════════════ */
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: 2px solid var(--card-border);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .cart-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--accent-green);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .cart-count.bump {
+            transform: scale(1.3);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--card-bg);
+            z-index: 2001;
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .cart-header h4 {
+            font-size: 1.1rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+
+        .cart-close:hover { color: var(--text); }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.5rem;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .cart-item-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-alt);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cart-item-price {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--card-border);
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .cart-qty-btn:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .cart-qty {
+            font-weight: 600;
+            font-size: 0.9rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .cart-item-remove:hover { color: #e74c3c; }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .cart-total span:last-child {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        .cart-clear {
+            display: block;
+            width: 100%;
+            margin-top: 0.8rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 8px;
+            transition: color 0.2s;
+            text-align: center;
+        }
+
+        .cart-clear:hover { color: #e74c3c; }
+
+        .cart-success {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cart-success h4 { margin-bottom: 0.5rem; }
+        .cart-success p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+    </style>
 </head>
 <body>
 
-<!-- ══ BARRE DU HAUT — Bootstrap navbar ══ -->
-<nav class="navbar topbar fixed-top px-3 d-flex align-items-center gap-2">
-  <div class="logo d-flex align-items-center gap-2" style="min-width:220px;">
-    <button class="icon-btn btn d-flex align-items-center justify-content-center">
-      <span class="material-icons">menu</span>
-    </button>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" height="36" width="36">
-      <path fill="#4caf50" d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"/>
-      <path fill="#1e88e5" d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"/>
-      <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/>
-      <path fill="#c62828" d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"/>
-      <path fill="#fbc02d" d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0C43.076,8,45,9.924,45,12.298z"/>
-    </svg>
-    <span>Gmail</span>
-  </div>
-
-  <div class="search-bar d-flex align-items-center px-3 gap-2 flex-grow-1" style="max-width:720px;">
-    <span class="material-icons">search</span>
-    <input type="text" class="flex-grow-1" placeholder="Rechercher dans les messages"/>
-    <span class="material-icons">tune</span>
-  </div>
-
-  <div class="d-flex align-items-center gap-1 ms-auto">
-    <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">help_outline</span></button>
-    <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">settings</span></button>
-    <button class="gemini-btn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2C12 2 13.5 8.5 20 12C13.5 15.5 12 22 12 22C12 22 10.5 15.5 4 12C10.5 8.5 12 2 12 2Z" fill="#1a73e8"/>
-      </svg>
-    </button>
-    <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">apps</span></button>
-    <div class="avatar-wrapper ms-1">
-      <img src="avatar.jpg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;cursor:pointer;"/>
-    </div>
-  </div>
-</nav>
-
-<!-- ══ MISE EN PAGE PRINCIPALE — Bootstrap d-flex ══ -->
-<div class="d-flex" style="margin-top:64px;">
-
-  <!-- ══ BARRE LATÉRALE GAUCHE — Bootstrap position-fixed d-flex flex-column ══ -->
-  <nav class="sidebar position-fixed d-flex flex-column pt-2">
-    <button class="compose-btn btn d-flex align-items-center gap-3 mx-3 mb-3 px-4 py-3">
-      <span class="material-icons">edit</span>
-      Nouveau message
-    </button>
-
-    <a class="nav-item-link active" href="#"><span class="material-icons">inbox</span>Boîte de réception<span class="nav-badge">324</span></a>
-    <a class="nav-item-link" href="#"><span class="material-icons">star_border</span>Messages suivis</a>
-    <a class="nav-item-link" href="#"><span class="material-icons">schedule</span>En attente</a>
-    <a class="nav-item-link" href="#"><span class="material-icons">send</span>Messages envoyés</a>
-    <a class="nav-item-link" href="#"><span class="material-icons">description</span><strong>Brouillons</strong><span class="nav-badge">2</span></a>
-    <a class="nav-item-link" href="#"><span class="material-icons">shopping_bag</span><strong>Achats</strong><span class="nav-badge">28</span></a>
-    <a class="nav-item-link" href="#"><span class="material-icons">expand_more</span>Plus</a>
-
-    <div class="px-3 mt-3 mb-1 text-uppercase" style="font-size:11px;font-weight:500;color:#444746;letter-spacing:.8px;">Libellés</div>
-    <a class="nav-item-link" href="#"><span class="material-icons" style="font-size:14px;color:#5f6368;">circle</span>Unwanted</a>
-
-    <div class="sidebar-bottom mt-auto d-flex align-items-center gap-2 px-3 py-3 border-top">
-      <span class="material-icons" style="font-size:18px;">info</span>
-      Mettre à niveau
-      <span class="material-icons ms-auto" style="font-size:18px;">arrow_forward</span>
-    </div>
-  </nav>
-
-  
-  <!-- ══ ZONE DE LA BOÎTE DE RÉCEPTION ══ -->
-  <div class="inbox-area flex-grow-1 px-3">
-
-    
-
-    <!-- BARRE D'OUTILS — Bootstrap d-flex -->
-    <div class="toolbar d-flex align-items-center gap-1 px-3 py-2">
-      <input class="form-check-input me-1" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-      <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">arrow_drop_down</span></button>
-      <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">refresh</span></button>
-      <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">more_vert</span></button>
-      <div class="ms-auto text-secondary" style="font-size:13px;">1–50 sur 492</div>
-      <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">chevron_left</span></button>
-      <button class="icon-btn btn d-flex align-items-center justify-content-center"><span class="material-icons">chevron_right</span></button>
-      <button class="btn d-flex align-items-center text-secondary px-1" style="font-size:13px;border-radius:50px;">Fr<span class="material-icons" style="font-size:16px;">arrow_drop_down</span></button>
+    <!-- ═══ PRELOADER ═══ -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-wheel"></div>
     </div>
 
-    
+    <!-- ═══ TOAST NOTIFICATION ═══ -->
+    <div class="custom-toast" id="customToast">
+        <div class="custom-toast-title" id="toastTitle">Notification</div>
+        <div class="custom-toast-text" id="toastText">Message</div>
+    </div>
 
-    <!-- ONGLETS — Bootstrap d-flex border-bottom -->
-    <div class="inbox-tabs d-flex border-bottom bg-white">
-      <div class="tab-item active">
-        <span class="material-icons">inbox</span>
-        <div class="tab-text"><div class="tab-title">Principale</div></div>
-      </div>
-      <div class="tab-item">
-        <span class="material-icons">local_offer</span>
-        <div class="tab-text">
-          <div class="tab-title">Promotions <span class="badge tab-pill bg-success">43 nouveaux</span></div>
-          <div class="tab-subtitle">Zapier – Cursor + Zapier MCP w…</div>
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar-custom" id="navbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#accueil" class="nav-brand">
+Velo<span>ra</span>
+                </a>
+                
+                <!-- Mobile toggle -->
+                <button class="d-lg-none theme-toggle" id="mobileMenu" aria-label="Menu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <!-- Nav links -->
+                <div class="d-none d-lg-flex align-items-center gap-1">
+                    <a href="#accueil" class="nav-link active" data-section="accueil">Accueil</a>
+                    <a href="#a-propos" class="nav-link" data-section="a-propos">À Propos</a>
+                    <a href="#velos" class="nav-link" data-section="velos">Vélos</a>
+                    <a href="#temoignages" class="nav-link" data-section="temoignages">Avis</a>
+                    <a href="#accessoires" class="nav-link" data-section="accessoires">Accessoires</a>
+                    <a href="#blog" class="nav-link" data-section="blog">Blog</a>
+                    <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+                </div>
+
+                <div class="d-none d-lg-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
+                    <a href="#contact" class="btn-gold" style="padding:10px 24px; font-size:0.78rem;">Devis gratuit</a>
+                    <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
+                        <i class="bi bi-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile nav -->
+            <div class="d-lg-none mt-3" id="mobileNav" style="display:none;">
+                <div class="d-flex flex-column gap-2 pb-3">
+                    <a href="#accueil" class="nav-link" onclick="closeMobileNav()">Accueil</a>
+                    <a href="#a-propos" class="nav-link" onclick="closeMobileNav()">À Propos</a>
+                    <a href="#velos" class="nav-link" onclick="closeMobileNav()">Vélos</a>
+                    <a href="#temoignages" class="nav-link" onclick="closeMobileNav()">Avis</a>
+                    <a href="#accessoires" class="nav-link" onclick="closeMobileNav()">Accessoires</a>
+                    <a href="#blog" class="nav-link" onclick="closeMobileNav()">Blog</a>
+                    <a href="#contact" class="nav-link" onclick="closeMobileNav()">Contact</a>
+                    <hr style="border-color:var(--card-border)">
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème">
+                            <i class="bi bi-moon-fill"></i>
+                        </button>
+                        <a href="#contact" class="btn-gold" style="padding:10px 24px; font-size:0.78rem;" onclick="closeMobileNav()">Devis gratuit</a>
+                        <button class="cart-btn" onclick="toggleCart(); closeMobileNav();" aria-label="Panier">
+                            <i class="bi bi-bag"></i>
+                            <span class="cart-count" id="cartCountMobile">0</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="tab-item">
-        <span class="material-icons">people</span>
-        <div class="tab-text">
-          <div class="tab-title">Réseaux soc… <span class="badge tab-pill bg-primary">30 nouveaux</span></div>
-          <div class="tab-subtitle">LinkedIn – 🏠 AEnZ, add Hama…</div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <div class="hero-badge">
+                        <i class="bi bi-stars"></i> Nouveau — Collection 2026
+                    </div>
+                    <h1>L'art du<br>cyclisme <em>d'exception</em></h1>
+                    <p class="hero-desc">
+                        Des vélos conçus avec passion à Libreville. Performance, élégance et durabilité 
+                        réunis dans chaque monture. Découvrez une nouvelle façon de rouler.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#velos" class="btn-gold">Explorer les vélos</a>
+                        <a href="#a-propos" class="btn-outline-dark-custom">Notre histoire</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center hero-image">
+</div>
+            </div>
         </div>
-      </div>
-      <div class="tab-item">
-        <span class="material-icons">info</span>
-        <div class="tab-text">
-          <div class="tab-title">Notifications <span class="badge tab-pill" style="background:#e37400;">30 nouveaux</span></div>
-          <div class="tab-subtitle">Flightradar24 – A close call at N…</div>
+    </section>
+
+    <!-- ═══ À PROPOS ═══ -->
+    <section id="a-propos">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <p class="section-label">Notre Histoire</p>
+                    <h2 class="section-title">Depuis 2018, nous réinventons le cyclisme urbain</h2>
+                    <p class="section-desc mb-4">
+                        Fondée à Libreville, Velora est née d'une passion : rendre le cyclisme accessible 
+                        et élégant en Afrique. Chaque vélo est assemblé avec soin, alliant technologie moderne 
+                        et design raffiné.
+                    </p>
+
+                    <div class="about-feature">
+                        <div class="about-feature-icon"><i class="bi bi-gear"></i></div>
+                        <div>
+                            <h5>Assemblage artisanal</h5>
+                            <p>Chaque vélo est méticuleusement vérifié et ajusté par nos techniciens experts.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon"><i class="bi bi-shield-check"></i></div>
+                        <div>
+                            <h5>Garantie 3 ans</h5>
+                            <p>Nous assurons la qualité avec une garantie complète sur le cadre et les composants.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon"><i class="bi bi-arrow-repeat"></i></div>
+                        <div>
+                            <h5>Service après-vente</h5>
+                            <p>Entretien, réparation et conseils personnalisés dans notre atelier de Libreville.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 reveal">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-card" style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);">
+                                <div class="stat-number" data-count="2500">0</div>
+                                <div class="stat-label">Vélos vendus</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card" style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);">
+                                <div class="stat-number" data-count="8">0</div>
+                                <div class="stat-label">Années d'expertise</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card" style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);">
+                                <div class="stat-number" data-count="15">0</div>
+                                <div class="stat-label">Modèles disponibles</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card" style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);">
+                                <div class="stat-number" data-count="98">0</div>
+                                <div class="stat-label">% Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- ═══ VÉLOS ═══ -->
+    <section id="velos" style="background:var(--bg-alt);">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Nos Vélos</p>
+                <h2 class="section-title">Trouvez votre monture idéale</h2>
+                <p class="section-desc mx-auto">De la route au tout-terrain, du quotidien à l'aventure — chaque modèle est pensé pour exceller.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="d-flex justify-content-center flex-wrap gap-2 mb-5 reveal">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="route">Route</button>
+                <button class="filter-btn" data-filter="vtt">VTT</button>
+                <button class="filter-btn" data-filter="urbain">Urbain</button>
+                <button class="filter-btn" data-filter="electrique">Électrique</button>
+            </div>
+
+            <!-- Products grid -->
+            <div class="row g-4" id="veloGrid">
+                <!-- Card 1 - Van Rysel EDR CF -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="route">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <span class="velo-card-badge">Populaire</span>
+                            <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=600&h=400&fit=crop&q=80" alt="Van Rysel EDR CF 105" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">Route</p>
+                            <h4>Van Rysel EDR CF 105</h4>
+                            <p>Cadre carbone 890g, Shimano 105 2x12v, freins à disque hydrauliques, fourche carbone.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">1 649 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart('Van Rysel EDR CF 105')"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 - Rockrider ST 540 -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="vtt">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <img src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=600&h=400&fit=crop&q=80" alt="Rockrider ST 540" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">VTT</p>
+                            <h4>Rockrider ST 540 27,5"</h4>
+                            <p>Suspension avant 120mm, transmission Shimano Altus 2x9v, freins à disque hydrauliques.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">449 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart('Rockrider ST 540')"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 - B'Twin Elops 920 E -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="urbain">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <span class="velo-card-badge">Nouveau</span>
+                            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop&q=80" alt="Elops 920 E Connect" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">Urbain</p>
+                            <h4>Elops 920 E Connect</h4>
+                            <p>Vélo ville électrique connecté, moteur moyeu, batterie intégrée, Nexus 7 vitesses, éclairage LED.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">1 399 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart('Elops 920 E Connect')"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 - Rockrider E-EXPL 700 -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="electrique">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <span class="velo-card-badge">Premium</span>
+                            <img src="https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?w=600&h=400&fit=crop&q=80" alt="Rockrider E-EXPL 700" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">Électrique</p>
+                            <h4>Rockrider E-EXPL 700</h4>
+                            <p>VTT électrique 29", moteur Bosch 85Nm, batterie 625Wh, suspension 150mm, écran Kiox.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">2 999 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart('Rockrider E-EXPL 700')"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 - Van Rysel EDR AF -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="route">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=400&fit=crop&q=80" alt="Van Rysel EDR AF" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">Route</p>
+                            <h4>Van Rysel EDR AF</h4>
+                            <p>Cadre alu endurance, Microshift Sword 2x10v, freins à disque, fourche carbone, pneus 32mm.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">899 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart('Van Rysel EDR AF')"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 - B'Twin E-Fold 900 -->
+                <div class="col-lg-4 col-md-6 velo-item reveal" data-category="electrique">
+                    <div class="velo-card">
+                        <div class="velo-card-img">
+                            <span class="velo-card-badge">Compact</span>
+                            <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&h=400&fit=crop&q=80" alt="B'Twin E-Fold 900" loading="lazy">
+                        </div>
+                        <div class="velo-card-body">
+                            <p class="velo-card-category">Électrique</p>
+                            <h4>B'Twin E-Fold 900</h4>
+                            <p>Vélo pliant électrique ultra compact, moteur Mahle X30, pliage 1 seconde, moins de 16kg.</p>
+                            <div class="velo-card-footer">
+                                <div class="velo-price">1 999 <small>€</small></div>
+                                <button class="btn-cart" onclick="addToCart(&quot;B'Twin E-Fold 900&quot;)"><i class="bi bi-bag-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TÉMOIGNAGES (Bootstrap Carousel) ═══ -->
+    <section id="temoignages">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Témoignages</p>
+                <h2 class="section-title">Ce que disent nos cyclistes</h2>
+            </div>
+
+            <div id="testimonialCarousel" class="carousel slide reveal" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testimonial-text">"Mon Aéro Pro Carbon a complètement transformé mes sorties du week-end. La légèreté et la réactivité sont incroyables. Merci Velora !"</p>
+                            <p class="testimonial-author">Thierry M.</p>
+                            <p class="testimonial-role">Cycliste passionné — Libreville</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testimonial-text">"Le City Glide 7 est parfait pour mes trajets quotidiens. Confortable, fiable, et le design est magnifique. Je le recommande sans hésiter."</p>
+                            <p class="testimonial-author">Sandrine A.</p>
+                            <p class="testimonial-role">Commuter urbaine — Owendo</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i></div>
+                            <p class="testimonial-text">"L'E-Volt 500 m'a réconcilié avec le vélo. L'assistance électrique est douce et naturelle. Je fais 30km par jour sans effort !"</p>
+                            <p class="testimonial-author">Patrick O.</p>
+                            <p class="testimonial-role">Ingénieur — Akanda</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="testimonial-text">"Le service après-vente est exemplaire. Mon Trail Dominator a été révisé en 24h. Une équipe professionnelle et passionnée."</p>
+                            <p class="testimonial-author">Jean-Marc B.</p>
+                            <p class="testimonial-role">Vététiste — Ntoum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BLOG ═══ -->
+    <section id="blog">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Blog</p>
+                <h2 class="section-title">Actualités & Conseils</h2>
+                <p class="section-desc mx-auto">Restez informés des dernières tendances du cyclisme et profitez de nos conseils d'experts.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="blog-card" onclick="window.location.href='article-velo-route.html'">
+                        <div class="blog-card-img"><i class="bi bi-bicycle"></i></div>
+                        <div class="blog-card-body">
+                            <p class="blog-card-date">15 Mars 2026</p>
+                            <h4>Comment choisir son premier vélo de route</h4>
+                            <p>Guide complet pour les débutants : taille du cadre, groupes de transmission, et budget conseillé.</p>
+                            <span class="blog-read-more">Lire l'article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="blog-card" onclick="window.location.href='article-entretien.html'">
+                        <div class="blog-card-img"><i class="bi bi-tools"></i></div>
+                        <div class="blog-card-body">
+                            <p class="blog-card-date">8 Mars 2026</p>
+                            <h4>Entretien vélo : les 5 gestes essentiels</h4>
+                            <p>Pression des pneus, lubrification de chaîne, freins... Les vérifications à faire chaque semaine.</p>
+                            <span class="blog-read-more">Lire l'article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="blog-card" onclick="window.location.href='article-pistes-libreville.html'">
+                        <div class="blog-card-img"><i class="bi bi-map"></i></div>
+                        <div class="blog-card-body">
+                            <p class="blog-card-date">1 Mars 2026</p>
+                            <h4>Top 5 des pistes cyclables à Libreville</h4>
+                            <p>Découvrez nos itinéraires favoris pour rouler en toute sécurité dans la capitale gabonaise.</p>
+                            <span class="blog-read-more">Lire l'article <i class="bi bi-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══ ACCESSOIRES ═══ -->
+    <section id="accessoires">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <p class="section-label">Accessoires</p>
+                <h2 class="section-title">Équipez-vous pour rouler en toute sérénité</h2>
+                <p class="section-desc mx-auto">Casques, éclairages, antivols et kits de réparation — tout ce qu'il faut pour profiter de chaque sortie.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Casque 1 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-shield-check"></i></div>
+                        <h5>Casque Route Aéro</h5>
+                        <p>Casque léger 230g, ventilation optimale, visière amovible, certifié CE. Tailles S à XL.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">59 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Casque Route Aéro&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Casque 2 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-shield-fill-check"></i></div>
+                        <h5>Casque VTT Enduro</h5>
+                        <p>Protection intégrale mentonnière amovible, système MIPS anti-rotation, 18 aérations.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">89 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Casque VTT Enduro&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Antivol 1 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-lock"></i></div>
+                        <h5>Antivol U 900</h5>
+                        <p>Antivol en U haute sécurité, acier trempé 16mm, double verrouillage, résistant aux coupes.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">39 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Antivol U 900&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Antivol 2 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-lock-fill"></i></div>
+                        <h5>Câble Antivol à Code</h5>
+                        <p>Câble flexible 1,80m, combinaison 4 chiffres, revêtement anti-rayure, idéal en complément.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">14 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Câble Antivol à Code&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Éclairage 1 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-lightbulb"></i></div>
+                        <h5>Kit Éclairage LED 500</h5>
+                        <p>Phare avant 500 lumens + feu arrière, USB rechargeable, 5 modes, autonomie 6h, étanche.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">29 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Kit Éclairage LED 500&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Éclairage 2 -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-brightness-high"></i></div>
+                        <h5>Phare Avant 900 Lumens</h5>
+                        <p>Éclairage puissant longue portée, faisceau réglable, fixation rapide, batterie 4000mAh.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">49 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Phare Avant 900 Lumens&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pompe -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-speedometer"></i></div>
+                        <h5>Pompe à Pied Pro</h5>
+                        <p>Manomètre intégré, compatible Presta/Schrader, pression max 11 bars, base stable en acier.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">34 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Pompe à Pied Pro&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kit réparation -->
+                <div class="col-lg-3 col-md-6 reveal">
+                    <div class="accessoire-card">
+                        <div class="accessoire-icon"><i class="bi bi-tools"></i></div>
+                        <h5>Kit Réparation Complet</h5>
+                        <p>Sacoche de selle avec multi-outils 16 fonctions, 2 démonte-pneus, chambre à air, mini-pompe.</p>
+                        <div class="accessoire-footer">
+                            <span class="accessoire-price">24 <small>€</small></span>
+                            <button class="btn-cart" onclick="addToCart(&quot;Kit Réparation Complet&quot;)"><i class="bi bi-bag-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 reveal">
+                    <p class="section-label">Contact</p>
+                    <h2 class="section-title">Parlons de votre prochain vélo</h2>
+                    <p class="section-desc mb-4">Une question, un devis, ou simplement envie d'échanger ? Notre équipe vous répond sous 24h.</p>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-geo-alt"></i></div>
+                        <div>
+                            <h6>Adresse</h6>
+                            <p>Boulevard Triomphal, Libreville, Gabon</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-telephone"></i></div>
+                        <div>
+                            <h6>Téléphone</h6>
+                            <p>+241 077 12 34 56</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-envelope"></i></div>
+                        <div>
+                            <h6>Email</h6>
+                            <p>contact@velora-gabon.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon"><i class="bi bi-clock"></i></div>
+                        <div>
+                            <h6>Horaires</h6>
+                            <p>Lun – Sam : 8h00 – 18h00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 reveal">
+                    <div class="contact-form">
+                        <form id="contactForm" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="formNom" placeholder="Nom" required minlength="2">
+                                        <label for="formNom">Nom complet *</label>
+                                        <div class="invalid-feedback">Veuillez entrer votre nom (min. 2 caractères).</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="formEmail" placeholder="Email" required>
+                                        <label for="formEmail">Email *</label>
+                                        <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="formTel" placeholder="Téléphone" pattern="[\+0-9\s]{8,15}">
+                                        <label for="formTel">Téléphone</label>
+                                        <div class="invalid-feedback">Numéro invalide (8-15 chiffres).</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="formSujet" required>
+                                            <option value="" selected disabled>Choisir...</option>
+                                            <option value="devis">Demande de devis</option>
+                                            <option value="info">Informations produit</option>
+                                            <option value="sav">Service après-vente</option>
+                                            <option value="autre">Autre</option>
+                                        </select>
+                                        <label for="formSujet">Sujet *</label>
+                                        <div class="invalid-feedback">Veuillez choisir un sujet.</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="formMessage" placeholder="Message" style="height:130px" required minlength="10"></textarea>
+                                        <label for="formMessage">Votre message *</label>
+                                        <div class="invalid-feedback">Votre message doit contenir au moins 10 caractères.</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="formConsent" required>
+                                        <label class="form-check-label" for="formConsent" style="font-size:0.85rem; color:var(--text-muted);">
+                                            J'accepte que mes données soient utilisées pour me recontacter *
+                                        </label>
+                                        <div class="invalid-feedback">Vous devez accepter les conditions.</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-gold w-100" id="submitBtn">
+                                        <span id="btnText">Envoyer le message</span>
+                                        <span id="btnLoader" style="display:none;"><i class="bi bi-arrow-repeat" style="animation: spin 0.6s linear infinite;"></i> Envoi en cours...</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="formSuccess" style="display:none;" class="text-center py-4">
+                            <div style="font-size:3rem; color:var(--secondary); margin-bottom:1rem;">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <h4>Message envoyé !</h4>
+                            <p style="color:var(--text-muted);">Merci, nous vous répondrons dans les 24 heures.</p>
+                            <button class="btn-outline-dark-custom mt-3" onclick="resetForm()">Envoyer un autre message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ NEWSLETTER ═══ -->
+    <div class="newsletter-section">
+        <div class="container text-center">
+            <div class="reveal">
+                <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.8rem; color: #fff;">Rejoignez la communauté Velora</h2>
+                <p style="color:rgba(255,255,255,0.6); margin-bottom:2rem; max-width:500px; margin-left:auto; margin-right:auto;">Recevez nos offres exclusives, conseils d'entretien et actualités du monde du vélo.</p>
+                <div class="d-flex gap-2 justify-content-center flex-wrap" style="max-width:500px; margin:0 auto;">
+                    <input type="email" class="newsletter-input flex-grow-1" id="newsletterEmail" placeholder="Votre adresse email">
+                    <button class="btn-gold" onclick="subscribeNewsletter()" style="white-space:nowrap;">S'inscrire</button>
+                </div>
+                <p id="newsletterMsg" style="color:var(--secondary); font-size:0.85rem; margin-top:1rem; display:none;"></p>
+            </div>
+        </div>
     </div>
 
-    
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-3">
+Velo<span>ra</span>
+                    </div>
+                    <p style="font-size:0.9rem; line-height:1.7; max-width:300px;">
+                        Cycles d'exception fabriqués avec passion à Libreville. L'élégance au service de la performance.
+                    </p>
+                    <div class="footer-social mt-3">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6>Navigation</h6>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#a-propos">À Propos</a></li>
+                        <li><a href="#velos">Nos Vélos</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6>Catégories</h6>
+                    <ul>
+                        <li><a href="#">Vélos de route</a></li>
+                        <li><a href="#">VTT</a></li>
+                        <li><a href="#">Vélos urbains</a></li>
+                        <li><a href="#">Vélos électriques</a></li>
+                        <li><a href="#accessoires">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6>Informations</h6>
+                    <ul>
+                        <li><a href="#">Livraison</a></li>
+                        <li><a href="#">Garantie</a></li>
+                        <li><a href="article-velo-route.html#taille-cadre">Guide des tailles</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <p style="font-size:0.8rem; margin:0;">&copy; 2026 Velora. Tous droits réservés.</p>
+                <p style="font-size:0.8rem; margin:0; color:#555;">
+                    Conçu avec <i class="bi bi-heart-fill" style="color:var(--secondary);"></i> à Libreville
+                </p>
+            </div>
+        </div>
+    </footer>
 
-    <!-- LISTE DES EMAILS -->
-    <div class="email-list bg-white">
+    <!-- ═══ BACK TO TOP ═══ -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="bi bi-chevron-up"></i>
+    </button>
 
-      <div class="email-row unread d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">GitHub</div>
-        <div class="subject-snippet"><span class="subject">Important Update to GitHub Copilot Interaction Data Usage Policy</span><span class="snippet"> – GitHub GitHub Hi there, We're updating how…</span></div>
-        <div class="date flex-shrink-0">25 mars</div>
-      </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-      <div class="email-row unread d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Discord 2</div>
-        <div class="subject-snippet"><span class="subject">Vérifier la connexion à Discord à partir du nouvel emplacement</span><span class="snippet"> – Salut ethantwr, Quelqu'un a tenté de se connecter à ton compt…</span></div>
-        <div class="date flex-shrink-0">24 mars</div>
-      </div>
+    <script>
+    /* ═══════════════════════════════════════════
+       PRELOADER
+       ═══════════════════════════════════════════ */
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('preloader').classList.add('hidden');
+        }, 600);
+    });
 
-      <div class="email-row unread d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Steam</div>
-        <div class="subject-snippet"><span class="subject">C'est parti pour les soldes de printemps Steam ! Voici quelques offres recommandées pour vous.</span><span class="snippet"> – Jusqu'au 26 mars 6:0…</span></div>
-        <div class="date flex-shrink-0">22 mars</div>
-      </div>
+    /* ═══════════════════════════════════════════
+       DARK MODE / LIGHT MODE TOGGLE
+       Uses localStorage to persist preference
+       ═══════════════════════════════════════════ */
+    function getTheme() {
+        return localStorage.getItem('velora-theme') || 'light';
+    }
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Hostinger</div>
-        <div class="subject-snippet"><span class="subject">Les dernières nouveautés chez Hostinger</span><span class="snippet"> – Outils simplifiés, flux de travail optimisés</span></div>
-        <div class="date flex-shrink-0">21 mars</div>
-      </div>
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('velora-theme', theme);
+        updateThemeIcon(theme);
+    }
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Supercell Store</div>
-        <div class="subject-snippet"><span class="subject">ENZO BEYRE OLLOMO EBANG, voici le reçu de votre commande SC260320-6633-73286</span><span class="snippet"> – Votre achat dans le Supercell St…</span></div>
-        <div class="date flex-shrink-0">20 mars</div>
-      </div>
+    function updateThemeIcon(theme) {
+        const icons = document.querySelectorAll('#themeIcon, .theme-toggle i');
+        icons.forEach(icon => {
+            if (theme === 'dark') {
+                icon.className = 'bi bi-sun-fill';
+            } else {
+                icon.className = 'bi bi-moon-fill';
+            }
+        });
+    }
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">no-reply</div>
-        <div class="subject-snippet"><span class="subject">Confirmation de commande de Recharge N° 197485</span><span class="snippet"> – Recharge Visa Hello OLLOMO EBANG ENZO BEYRE, Merci pour votre c…</span></div>
-        <div class="date flex-shrink-0">20 mars</div>
-      </div>
+    function toggleTheme() {
+        const current = getTheme();
+        const next = current === 'light' ? 'dark' : 'light';
+        setTheme(next);
+        showToast('Thème', next === 'dark' ? 'Mode sombre activé 🌙' : 'Mode clair activé ☀️');
+    }
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Supercell Store</div>
-        <div class="subject-snippet"><span class="subject">ENZO BEYRE OLLOMO EBANG, voici le reçu de votre commande SC260320-4567-35977</span><span class="snippet"> – Votre achat dans le Supercell St…</span></div>
-        <div class="date flex-shrink-0">20 mars</div>
-      </div>
+    // Initialize theme
+    setTheme(getTheme());
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">no-reply</div>
-        <div class="subject-snippet"><span class="subject">Confirmation de commande de Recharge N° 197381</span><span class="snippet"> – Recharge Visa Hello OLLOMO EBANG ENZO BEYRE, Merci pour votre c…</span></div>
-        <div class="date flex-shrink-0">20 mars</div>
-      </div>
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">no-reply</div>
-        <div class="subject-snippet"><span class="subject">Confirmation de commande de Recharge N° 196724</span><span class="snippet"> – Recharge Visa Hello OLLOMO EBANG ENZO BEYRE, Merci pour votre c…</span></div>
-        <div class="date flex-shrink-0">18 mars</div>
-      </div>
+    /* ═══════════════════════════════════════════
+       NAVBAR SCROLL EFFECT
+       ═══════════════════════════════════════════ */
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Glassdoor</div>
-        <div class="subject-snippet"><span class="subject">Accès unique pour Glassdoor et Indeed</span><span class="snippet"> – Avec l'accès unique, vous obtiendrez des offres d'emploi plus pertinentes.</span></div>
-        <div class="date flex-shrink-0">17 mars</div>
-      </div>
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        // Navbar shrink
+        if (scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
 
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">EA</div>
-        <div class="subject-snippet"><span class="subject">Your EA Security Code is: 038190</span><span class="snippet"> – View online click here. EA logo Your EA Security Code: 038190 If this email was unexpecte…</span></div>
-        <div class="date flex-shrink-0">17 mars</div>
-      </div>
+        // Back to top button
+        if (scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
 
-      
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">Zapier Alerts</div>
-        <div class="subject-snippet"><span class="subject">Notice: Upcoming routine maintenance planned</span><span class="snippet"> – Upcoming maintenance may impact your Zapier editor experience on Sund…</span></div>
-        <div class="date flex-shrink-0">16 mars</div>
-      </div>
+        // Active nav link based on scroll position
+        updateActiveNav();
+    });
 
-      
-      <div class="email-row read d-flex align-items-center gap-2 px-3">
-        <input class="form-check-input flex-shrink-0" type="checkbox" style="width:16px;height:16px;border-radius:3px;border:2px solid #bdc1c6;cursor:pointer;margin:0;"/>
-        <span class="material-icons star flex-shrink-0">star_border</span>
-        <div class="sender flex-shrink-0">X</div>
-        <div class="subject-snippet"><span class="subject">Nouvelle connexion à X depuis ChromeMobilelos sur iPhone</span><span class="snippet"> – Nous avons remarqué une connexion à votre compte @Jayy_…</span></div>
-        <div class="date flex-shrink-0">16 mars</div>
-      </div>
+    /* ═══════════════════════════════════════════
+       ACTIVE NAV LINK ON SCROLL
+       ═══════════════════════════════════════════ */
+    function updateActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link[data-section]');
+        let current = '';
 
-    
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
 
-    </div><!-- /liste-emails -->
-  </div><!-- /boite-reception -->
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === current) {
+                link.classList.add('active');
+            }
+        });
+    }
 
-  
+    /* ═══════════════════════════════════════════
+       MOBILE MENU
+       ═══════════════════════════════════════════ */
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileNav = document.getElementById('mobileNav');
 
+    mobileMenu.addEventListener('click', () => {
+        const isOpen = mobileNav.style.display === 'block';
+        mobileNav.style.display = isOpen ? 'none' : 'block';
+        mobileMenu.innerHTML = isOpen ? '<i class="bi bi-list"></i>' : '<i class="bi bi-x-lg"></i>';
+    });
 
+    function closeMobileNav() {
+        mobileNav.style.display = 'none';
+        mobileMenu.innerHTML = '<i class="bi bi-list"></i>';
+    }
 
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL ANIMATION
+       IntersectionObserver for performance
+       ═══════════════════════════════════════════ */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-   
-    <!-- ══ BARRE LATÉRALE DROITE — Bootstrap position-fixed d-flex flex-column ══ -->
-  <div class="right-sidebar position-fixed d-flex flex-column align-items-center pt-2">
-    <div class="right-icon d-flex align-items-center justify-content-center">
-      <img src="agenda.png" width="28" height="28" style="border-radius:6px;"/>
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ═══════════════════════════════════════════
+       COUNTER ANIMATION
+       ═══════════════════════════════════════════ */
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-count'));
+                animateCounter(el, target);
+                counterObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+
+    function animateCounter(el, target) {
+        const duration = 2000;
+        const start = 0;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out quad
+            const eased = 1 - (1 - progress) * (1 - progress);
+            const current = Math.floor(start + (target - start) * eased);
+            
+            el.textContent = current.toLocaleString('fr-FR');
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                el.textContent = target.toLocaleString('fr-FR');
+                if (target === 98) el.textContent = '98%';
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    /* ═══════════════════════════════════════════
+       PRODUCT FILTER (DOM Manipulation)
+       ═══════════════════════════════════════════ */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const veloItems = document.querySelectorAll('.velo-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+
+            veloItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    item.style.display = '';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.transition = 'opacity 0.4s, transform 0.4s';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 400);
+                }
+            });
+        });
+    });
+
+    /* ═══════════════════════════════════════════
+       CART (LocalStorage)
+       ═══════════════════════════════════════════ */
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem('velora-cart')) || [];
+        } catch {
+            return [];
+        }
+    }
+
+    // Price catalog
+    const priceCatalog = {
+        'Van Rysel EDR CF 105': 1649,
+        'Rockrider ST 540': 449,
+        'Elops 920 E Connect': 1399,
+        'Rockrider E-EXPL 700': 2999,
+        'Van Rysel EDR AF': 899,
+        "B'Twin E-Fold 900": 1999,
+        'Casque Route Aéro': 59,
+        'Casque VTT Enduro': 89,
+        'Antivol U 900': 39,
+        'Câble Antivol à Code': 14,
+        'Kit Éclairage LED 500': 29,
+        'Phare Avant 900 Lumens': 49,
+        'Pompe à Pied Pro': 34,
+        'Kit Réparation Complet': 24
+    };
+
+    function addToCart(name) {
+        const cart = getCart();
+        const existing = cart.find(item => item.name === name);
+        
+        if (existing) {
+            existing.qty += 1;
+        } else {
+            cart.push({ name: name, qty: 1, price: priceCatalog[name] || 0 });
+        }
+        
+        localStorage.setItem('velora-cart', JSON.stringify(cart));
+        updateCartUI();
+        
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        showToast('Panier mis à jour', `${name} ajouté ! (${totalItems} article${totalItems > 1 ? 's' : ''} au total)`);
+        
+        // Bump animation on cart count
+        document.querySelectorAll('.cart-count').forEach(el => {
+            el.classList.add('bump');
+            setTimeout(() => el.classList.remove('bump'), 300);
+        });
+    }
+
+    function toggleCart() {
+        document.getElementById('cartOverlay').classList.toggle('open');
+        document.getElementById('cartSidebar').classList.toggle('open');
+        document.getElementById('cartSuccess').style.display = 'none';
+        renderCart();
+    }
+
+    function updateCartUI() {
+        const cart = getCart();
+        const total = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.querySelectorAll('.cart-count').forEach(el => {
+            el.textContent = total;
+        });
+    }
+
+    function renderCart() {
+        const cart = getCart();
+        const body = document.getElementById('cartBody');
+        const footer = document.getElementById('cartFooter');
+
+        if (cart.length === 0) {
+            body.innerHTML = '<div class="cart-empty"><i class="bi bi-bag-x"></i><p>Votre panier est vide</p><p style="font-size:0.85rem;">Explorez nos vélos et ajoutez vos favoris !</p></div>';
+            footer.style.display = 'none';
+            return;
+        }
+
+        let html = '';
+        let totalPrice = 0;
+
+        cart.forEach((item, index) => {
+            const itemTotal = (item.price || 0) * item.qty;
+            totalPrice += itemTotal;
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-icon"><i class="bi bi-bicycle"></i></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${(item.price || 0).toLocaleString('fr-FR')} € × ${item.qty} = ${itemTotal.toLocaleString('fr-FR')} €</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="cart-qty-btn" onclick="changeQty(${index}, -1)">−</button>
+                        <span class="cart-qty">${item.qty}</span>
+                        <button class="cart-qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeItem(${index})"><i class="bi bi-trash3"></i></button>
+                </div>
+            `;
+        });
+
+        body.innerHTML = html;
+        footer.style.display = 'block';
+        document.getElementById('cartTotal').textContent = totalPrice.toLocaleString('fr-FR') + ' €';
+    }
+
+    function changeQty(index, delta) {
+        const cart = getCart();
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) cart.splice(index, 1);
+        localStorage.setItem('velora-cart', JSON.stringify(cart));
+        updateCartUI();
+        renderCart();
+    }
+
+    function removeItem(index) {
+        const cart = getCart();
+        const name = cart[index].name;
+        cart.splice(index, 1);
+        localStorage.setItem('velora-cart', JSON.stringify(cart));
+        updateCartUI();
+        renderCart();
+        showToast('Article retiré', name + ' supprimé du panier.');
+    }
+
+    function clearCart() {
+        localStorage.setItem('velora-cart', '[]');
+        updateCartUI();
+        renderCart();
+        document.getElementById('cartSuccess').style.display = 'none';
+        document.getElementById('cartBody').style.display = '';
+        document.getElementById('cartFooter').style.display = 'none';
+        toggleCart();
+        showToast('Panier vidé', 'Votre panier est maintenant vide.');
+    }
+
+    function validateCart() {
+        const cart = getCart();
+        if (cart.length === 0) return;
+        
+        // Save order
+        const order = {
+            items: cart,
+            total: cart.reduce((sum, item) => sum + (item.price || 0) * item.qty, 0),
+            date: new Date().toISOString()
+        };
+        const orders = JSON.parse(localStorage.getItem('velora-orders') || '[]');
+        orders.push(order);
+        localStorage.setItem('velora-orders', JSON.stringify(orders));
+        
+        // Show success
+        document.getElementById('cartBody').style.display = 'none';
+        document.getElementById('cartFooter').style.display = 'none';
+        document.getElementById('cartSuccess').style.display = 'flex';
+        
+        // Clear cart
+        localStorage.setItem('velora-cart', '[]');
+        updateCartUI();
+    }
+
+    // Initialize cart count on load
+    updateCartUI();
+
+    /* ═══════════════════════════════════════════
+       TOAST NOTIFICATION
+       ═══════════════════════════════════════════ */
+    let toastTimeout;
+
+    function showToast(title, text) {
+        const toast = document.getElementById('customToast');
+        document.getElementById('toastTitle').textContent = title;
+        document.getElementById('toastText').textContent = text;
+
+        toast.classList.add('show');
+        
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    /* ═══════════════════════════════════════════
+       FORM VALIDATION
+       Complete client-side validation with
+       custom messages and visual feedback
+       ═══════════════════════════════════════════ */
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Custom email validation
+        const emailInput = document.getElementById('formEmail');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(emailInput.value)) {
+            emailInput.setCustomValidity('Email invalide');
+        } else {
+            emailInput.setCustomValidity('');
+        }
+
+        // Custom phone validation
+        const telInput = document.getElementById('formTel');
+        if (telInput.value && !/^[\+0-9\s]{8,15}$/.test(telInput.value)) {
+            telInput.setCustomValidity('Numéro invalide');
+        } else {
+            telInput.setCustomValidity('');
+        }
+
+        this.classList.add('was-validated');
+
+        if (this.checkValidity()) {
+            // Show loading
+            document.getElementById('btnText').style.display = 'none';
+            document.getElementById('btnLoader').style.display = 'inline';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Simulate submission
+            setTimeout(() => {
+                // Save form data to localStorage
+                const formData = {
+                    nom: document.getElementById('formNom').value,
+                    email: document.getElementById('formEmail').value,
+                    tel: document.getElementById('formTel').value,
+                    sujet: document.getElementById('formSujet').value,
+                    message: document.getElementById('formMessage').value,
+                    date: new Date().toISOString()
+                };
+
+                const submissions = JSON.parse(localStorage.getItem('velora-submissions') || '[]');
+                submissions.push(formData);
+                localStorage.setItem('velora-submissions', JSON.stringify(submissions));
+
+                // Show success
+                contactForm.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                showToast('Succès !', 'Votre message a bien été envoyé.');
+            }, 1500);
+        }
+    });
+
+    // Real-time validation feedback
+    const formInputs = contactForm.querySelectorAll('input, textarea, select');
+    formInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.classList.contains('is-invalid') || contactForm.classList.contains('was-validated')) {
+                if (this.checkValidity()) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                    this.classList.add('is-invalid');
+                }
+            }
+        });
+    });
+
+    function resetForm() {
+        contactForm.reset();
+        contactForm.classList.remove('was-validated');
+        contactForm.style.display = '';
+        document.getElementById('formSuccess').style.display = 'none';
+        document.getElementById('btnText').style.display = '';
+        document.getElementById('btnLoader').style.display = 'none';
+        document.getElementById('submitBtn').disabled = false;
+        
+        formInputs.forEach(input => {
+            input.classList.remove('is-valid', 'is-invalid');
+        });
+    }
+
+    /* ═══════════════════════════════════════════
+       NEWSLETTER (LocalStorage)
+       ═══════════════════════════════════════════ */
+    function subscribeNewsletter() {
+        const emailInput = document.getElementById('newsletterEmail');
+        const msgEl = document.getElementById('newsletterMsg');
+        const email = emailInput.value.trim();
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            msgEl.style.display = 'block';
+            msgEl.style.color = '#e74c3c';
+            msgEl.textContent = 'Veuillez entrer un email valide.';
+            return;
+        }
+
+        // Save to localStorage
+        const subscribers = JSON.parse(localStorage.getItem('velora-newsletter') || '[]');
+        
+        if (subscribers.includes(email)) {
+            msgEl.style.display = 'block';
+            msgEl.style.color = '#e67e22';
+            msgEl.textContent = 'Cet email est déjà inscrit !';
+            return;
+        }
+
+        subscribers.push(email);
+        localStorage.setItem('velora-newsletter', JSON.stringify(subscribers));
+
+        msgEl.style.display = 'block';
+        msgEl.style.color = 'var(--secondary)';
+        msgEl.textContent = '✓ Merci ! Vous êtes maintenant inscrit.';
+        emailInput.value = '';
+
+        showToast('Newsletter', 'Inscription réussie ! Bienvenue chez Velora.');
+    }
+
+    /* ═══════════════════════════════════════════
+       SMOOTH SCROLL for anchor links
+       ═══════════════════════════════════════════ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    /* ═══════════════════════════════════════════
+       IMAGE FALLBACK
+       ═══════════════════════════════════════════ */
+    document.querySelectorAll('.velo-card-img img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            const parent = this.parentElement;
+            const icon = document.createElement('div');
+            icon.innerHTML = '<i class="bi bi-bicycle" style="font-size:4rem; color:var(--text-light); opacity:0.4;"></i>';
+            icon.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;';
+            parent.appendChild(icon);
+        });
+    });
+
+    /* ═══════════════════════════════════════════
+       KEYBOARD ACCESSIBILITY
+       ═══════════════════════════════════════════ */
+    document.addEventListener('keydown', (e) => {
+        // Escape closes mobile nav
+        if (e.key === 'Escape') {
+            closeMobileNav();
+        }
+    });
+
+    </script>
+
+    <!-- ═══ CART SIDEBAR ═══ -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h4><i class="bi bi-bag"></i> Mon Panier</h4>
+            <button class="cart-close" onclick="toggleCart()"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <!-- Cart items will be rendered here -->
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">0 €</span>
+            </div>
+            <button class="btn-gold w-100" onclick="validateCart()" style="margin-top:1rem;">
+                <i class="bi bi-check-circle"></i> Valider la commande
+            </button>
+            <button class="cart-clear" onclick="clearCart()">
+                <i class="bi bi-trash3"></i> Vider le panier
+            </button>
+        </div>
+        <!-- Success message -->
+        <div class="cart-success" id="cartSuccess" style="display:none;">
+            <div style="font-size:3.5rem; margin-bottom:1rem;">🎉</div>
+            <h4>Commande validée !</h4>
+            <p>Merci pour votre commande. Notre équipe vous contactera sous 24h pour confirmer les détails et organiser la livraison.</p>
+            <button class="btn-gold" onclick="clearCart()" style="margin-top:1.5rem; width:100%;">Fermer</button>
+        </div>
     </div>
-    <div class="right-icon d-flex align-items-center justify-content-center">
-      <img src="keep.jpg" width="28" height="28" style="border-radius:6px;"/>
-    </div>
-    <div class="right-icon d-flex align-items-center justify-content-center">
-      <img src="task.png" width="28" height="28" style="border-radius:6px;"/>
-    </div>
-    <div class="right-icon d-flex align-items-center justify-content-center">
-      <img src="contacts.png" width="28" height="28" style="border-radius:6px;"/>
-    </div>
-    <hr class="w-75 my-1"/>
-    <div class="right-icon d-flex align-items-center justify-content-center">
-      <span class="material-icons" style="font-size:20px;color:#5f6368;">add</span>
-    </div>
+
+</body>
+</html>

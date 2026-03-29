@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — Velora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        :root{--primary:#3643BA;--secondary:#3643BA;--accent:#e8ecff;--accent-green:#54CFA1;--bg:#f7f8fc;--bg-alt:#eef0f8;--text:#1a1a2e;--text-muted:#5a5a7a;--text-light:#8e8ea8;--card-bg:#fff;--card-border:rgba(54,67,186,.08);--nav-bg:rgba(247,248,252,.94);--radius:12px;--transition:.4s cubic-bezier(.25,.46,.45,.94)}
+        [data-theme="dark"]{--primary:#6b78e8;--secondary:#6b78e8;--accent:#1e2048;--accent-green:#54CFA1;--bg:#0c0d1e;--bg-alt:#12132e;--text:#e0e0f0;--text-muted:#9090b8;--text-light:#606088;--card-bg:#161838;--card-border:rgba(107,120,232,.1);--nav-bg:rgba(12,13,30,.94)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        .navbar-custom{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:.8rem 0;position:sticky;top:0;z-index:1050}
+        .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--text);letter-spacing:3px;text-transform:uppercase}
+        .nav-brand span{color:var(--secondary)}
+        .btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:gap .3s}
+        .btn-back:hover{gap:12px}
+        .theme-toggle{background:none;border:2px solid var(--card-border);color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .theme-toggle:hover{border-color:var(--secondary);color:var(--secondary)}
+
+        .page-header{padding:80px 0 40px;text-align:center}
+        .page-header h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:.8rem}
+        .page-header p{color:var(--text-muted);font-size:1.05rem;max-width:600px;margin:0 auto}
+
+        .faq-container{max-width:800px;margin:0 auto;padding:0 1rem 80px}
+
+        .faq-category{margin-bottom:2.5rem}
+        .faq-category-title{font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--secondary);margin-bottom:1.2rem;display:flex;align-items:center;gap:8px}
+        .faq-category-title i{font-size:1rem}
+
+        .faq-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);margin-bottom:.8rem;overflow:hidden;transition:box-shadow .3s}
+        .faq-item:hover{box-shadow:0 4px 15px rgba(54,67,186,.06)}
+
+        .faq-question{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.5rem;cursor:pointer;font-weight:600;font-size:.95rem;gap:1rem;transition:color .3s}
+        .faq-question:hover{color:var(--secondary)}
+        .faq-question i{transition:transform .3s;color:var(--text-light);flex-shrink:0}
+        .faq-item.open .faq-question i{transform:rotate(180deg);color:var(--secondary)}
+        .faq-item.open .faq-question{color:var(--secondary)}
+
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+        .faq-item.open .faq-answer{max-height:500px}
+        .faq-answer-inner{padding:0 1.5rem 1.5rem;color:var(--text-muted);font-size:.95rem;line-height:1.75}
+        .faq-answer-inner strong{color:var(--text)}
+
+        .faq-contact{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-top:3rem}
+        .faq-contact h3{font-size:1.3rem;margin-bottom:.5rem}
+        .faq-contact p{color:var(--text-muted);font-size:.95rem;margin-bottom:1.5rem}
+        .btn-gold{background:var(--secondary);color:#fff;padding:14px 36px;border:none;border-radius:50px;font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;display:inline-block}
+        .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(54,67,186,.35);color:#fff}
+
+        footer{background:#0d0e2a;color:#a0a0c0;padding:30px 0;text-align:center;font-size:.85rem}
+        footer a{color:var(--secondary)}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="nav-brand">Velo<span>ra</span></a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')"><i class="bi bi-moon-fill"></i></button>
+                <a href="index.html" class="btn-back"><i class="bi bi-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Foire Aux Questions</h1>
+            <p>Retrouvez les réponses aux questions les plus fréquentes sur nos vélos, services et livraisons.</p>
+        </div>
+    </header>
+
+    <div class="faq-container">
+
+        <!-- Commandes & Livraison -->
+        <div class="faq-category">
+            <div class="faq-category-title"><i class="bi bi-truck"></i> Commandes & Livraison</div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Comment passer commande ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Vous pouvez passer commande directement sur notre site en ajoutant les produits à votre panier puis en validant. Vous pouvez également nous contacter par téléphone au <strong>+241 077 12 34 56</strong> ou passer directement dans notre boutique sur le Boulevard Triomphal à Libreville. Après validation, notre équipe vous recontacte sous 24h pour confirmer les détails.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Quels sont les délais de livraison ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Pour les produits en stock, la livraison se fait sous <strong>2 à 5 jours ouvrés</strong> à Libreville et ses environs (Owendo, Akanda, Ntoum). Pour les commandes spéciales ou les vélos sur mesure, comptez <strong>2 à 4 semaines</strong>. Les livraisons hors Libreville sont possibles — contactez-nous pour un devis transport personnalisé.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">La livraison est-elle gratuite ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    La livraison est <strong>gratuite à Libreville</strong> pour toute commande supérieure à 200 000 FCFA. En dessous de ce montant, des frais de livraison de 5 000 FCFA s'appliquent. Le retrait en magasin est toujours gratuit — votre vélo sera monté et réglé par nos techniciens avant la remise.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Quels moyens de paiement acceptez-vous ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Nous acceptons les paiements en <strong>espèces</strong>, par <strong>virement bancaire</strong>, par <strong>Mobile Money</strong> (Airtel Money, Moov Money) et par <strong>carte bancaire</strong> en magasin. Un paiement en <strong>3 fois sans frais</strong> est disponible pour les achats supérieurs à 300 000 FCFA — demandez les conditions en magasin.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- Vélos & Produits -->
+        <div class="faq-category">
+            <div class="faq-category-title"><i class="bi bi-bicycle"></i> Vélos & Produits</div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Comment choisir la bonne taille de vélo ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    La taille dépend de votre hauteur et de votre entrejambe. Consultez notre <a href="article-velo-route.html#taille-cadre" style="color:var(--secondary);font-weight:600;">guide des tailles complet</a> pour trouver la taille idéale. En cas de doute, passez en magasin — nos conseillers vous feront essayer plusieurs modèles pour trouver l'ajustement parfait.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Proposez-vous des vélos pour enfants ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Oui ! Nous proposons une gamme de vélos enfants de <strong>14 à 26 pouces</strong>, adaptés de 3 à 14 ans. Des draisiennes pour les plus petits aux vélos 24 pouces avec vitesses pour les pré-ados, notre catalogue couvre tous les âges. Passez en magasin avec votre enfant pour un essai.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Est-il possible d'essayer un vélo avant l'achat ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Absolument ! Tous nos vélos en exposition sont disponibles à l'essai dans notre magasin de Libreville. Nous disposons d'un espace d'essai sécurisé. Nous vous recommandons de prendre rendez-vous pour un <strong>essai personnalisé</strong> afin que nos conseillers puissent vous accompagner dans votre choix.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Quel vélo choisir pour les routes de Libreville ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Les routes de Libreville étant variées (bitume, pistes, nids-de-poule), nous recommandons un <strong>vélo avec des pneus larges (32mm minimum)</strong> et des <strong>freins à disque</strong> pour les arrêts d'urgence. Le Van Rysel EDR AF avec ses pneus 32mm est un excellent choix route. Pour un usage plus polyvalent (route + pistes), le Rockrider ST 540 est idéal.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- Garantie & SAV -->
+        <div class="faq-category">
+            <div class="faq-category-title"><i class="bi bi-shield-check"></i> Garantie & Service Après-Vente</div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Quelle est la durée de garantie ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Nos vélos bénéficient d'une <strong>garantie 3 ans sur le cadre</strong> et de <strong>2 ans sur les composants</strong> (transmission, freins, roues). La garantie couvre les défauts de fabrication. L'usure normale, les dommages liés à une utilisation inappropriée ou un manque d'entretien ne sont pas couverts.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Proposez-vous un service de réparation ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Oui, notre atelier est ouvert du <strong>lundi au samedi de 8h à 18h</strong>. Nos techniciens experts peuvent intervenir sur tout type de vélo (pas uniquement ceux achetés chez nous). Services proposés : réparation crevaison, réglage dérailleurs, changement de freins, révision complète, dévoilage de roues, purge de freins hydrauliques, et bien plus.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Combien coûte une révision complète ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Une <strong>révision standard</strong> (réglage freins, dérailleurs, pression pneus, vérification générale) coûte <strong>25 000 FCFA</strong>. Une <strong>révision complète</strong> (incluant graissage roulements, nettoyage complet, changement câbles/gaines si nécessaire) coûte <strong>50 000 FCFA</strong>. Les pièces de rechange sont facturées en sus.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Puis-je retourner ou échanger mon vélo ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Vous disposez de <strong>14 jours</strong> après l'achat pour retourner ou échanger votre vélo, à condition qu'il soit dans son état d'origine (non utilisé en extérieur, sans rayures ni dommages). Les accessoires peuvent être retournés sous 30 jours dans leur emballage d'origine. Le remboursement est effectué sous 7 jours ouvrés.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- Entretien -->
+        <div class="faq-category">
+            <div class="faq-category-title"><i class="bi bi-tools"></i> Entretien</div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">À quelle fréquence dois-je entretenir mon vélo ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Nous recommandons de vérifier la <strong>pression des pneus avant chaque sortie</strong>, de lubrifier la chaîne toutes les <strong>200-300 km</strong>, et de faire un nettoyage complet toutes les <strong>2 à 4 semaines</strong>. Une révision professionnelle est conseillée une fois par an ou tous les 3 000 km. Consultez notre <a href="article-entretien.html" style="color:var(--secondary);font-weight:600;">guide d'entretien complet</a> pour tous les détails.
+                </div></div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">Comment protéger mon vélo de la rouille sous le climat tropical ? <i class="bi bi-chevron-down"></i></div>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Le climat humide de Libreville peut accélérer la corrosion. Nos conseils : <strong>séchez votre vélo après chaque sortie sous la pluie</strong>, appliquez régulièrement un spray protecteur anti-corrosion sur les parties métalliques, stockez votre vélo à l'abri dans un endroit sec, et utilisez un lubrifiant humide pour la chaîne pendant la saison des pluies. Les cadres en aluminium et carbone résistent naturellement mieux que l'acier.
+                </div></div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="faq-contact">
+            <h3>Vous n'avez pas trouvé votre réponse ?</h3>
+            <p>Notre équipe est disponible pour répondre à toutes vos questions du lundi au samedi.</p>
+            <a href="index.html#contact" class="btn-gold">Nous contacter</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Velora. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+    <script>
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        const wasOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        // Open clicked if it wasn't open
+        if (!wasOpen) item.classList.add('open');
+    }
+    </script>
+
+</body>
+</html>

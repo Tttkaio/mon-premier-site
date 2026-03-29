@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 des pistes cyclables à Libreville — Velora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <style>
+        :root{--primary:#3643BA;--secondary:#3643BA;--accent:#e8ecff;--accent-green:#54CFA1;--bg:#f7f8fc;--bg-alt:#eef0f8;--text:#1a1a2e;--text-muted:#5a5a7a;--text-light:#8e8ea8;--card-bg:#fff;--card-border:rgba(54,67,186,.08);--nav-bg:rgba(247,248,252,.94);--radius:12px;--transition:.4s cubic-bezier(.25,.46,.45,.94)}
+        [data-theme="dark"]{--primary:#6b78e8;--secondary:#6b78e8;--accent:#1e2048;--accent-green:#54CFA1;--bg:#0c0d1e;--bg-alt:#12132e;--text:#e0e0f0;--text-muted:#9090b8;--text-light:#606088;--card-bg:#161838;--card-border:rgba(107,120,232,.1);--nav-bg:rgba(12,13,30,.94)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition)}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2}
+        a{text-decoration:none;color:inherit}
+        .navbar-custom{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--card-border);padding:.8rem 0;position:sticky;top:0;z-index:1050}
+        .nav-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1.6rem;color:var(--text);letter-spacing:3px;text-transform:uppercase}
+        .nav-brand span{color:var(--secondary)}
+        .btn-back{display:inline-flex;align-items:center;gap:8px;color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;transition:gap .3s}
+        .btn-back:hover{gap:12px;color:var(--secondary)}
+        .article-header{padding:80px 0 40px;text-align:center}
+        .article-badge{display:inline-block;padding:6px 18px;background:var(--accent);border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--secondary);margin-bottom:1.5rem}
+        .article-header h1{font-size:clamp(2rem,5vw,3.2rem);max-width:800px;margin:0 auto 1rem}
+        .article-meta{color:var(--text-muted);font-size:.9rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+        .article-content{max-width:750px;margin:0 auto;padding:0 1rem 80px}
+        .article-content p{font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.5rem}
+        .article-content h2{font-size:1.6rem;margin:2.5rem 0 1rem;color:var(--text)}
+        .article-content ul{padding-left:1.5rem;margin-bottom:1.5rem}
+        .article-content li{font-size:1rem;line-height:1.8;color:var(--text-muted);margin-bottom:.5rem}
+        .article-content strong{color:var(--text)}
+        .article-content blockquote{border-left:4px solid var(--secondary);padding:1rem 1.5rem;margin:2rem 0;background:var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-style:italic;color:var(--text)}
+        .route-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:2rem;margin:2rem 0;transition:transform .3s,box-shadow .3s}
+        .route-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(54,67,186,.1)}
+        .route-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+        .route-number{display:flex;align-items:center;justify-content:center;width:50px;height:50px;background:var(--secondary);color:#fff;border-radius:50%;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;flex-shrink:0}
+        .route-card h3{font-size:1.3rem;margin:0}
+        .route-card p{margin-bottom:.8rem}
+        .route-stats{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--card-border)}
+        .route-stat{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--text-muted)}
+        .route-stat i{color:var(--secondary)}
+        .difficulty{display:inline-block;padding:3px 12px;border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+        .difficulty-easy{background:#e5f9f0;color:#2d9a6e}
+        .difficulty-medium{background:#fff3e0;color:#e67e22}
+        .difficulty-hard{background:#fde8e8;color:#e74c3c}
+        .tip-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:1.5rem;margin:2rem 0}
+        .tip-box-title{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;color:var(--secondary);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
+        .tip-box p{margin:0;font-size:.95rem}
+        .article-nav{display:flex;justify-content:space-between;align-items:center;padding:2rem 0;border-top:1px solid var(--card-border);margin-top:3rem;flex-wrap:wrap;gap:1rem}
+        .article-nav a{color:var(--secondary);font-weight:600;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:gap .3s}
+        .article-nav a:hover{gap:10px}
+        footer{background:#0d0e2a;color:#a0a0c0;padding:30px 0;text-align:center;font-size:.85rem}
+        footer a{color:var(--secondary)}
+        .theme-toggle{background:none;border:2px solid var(--card-border);color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .theme-toggle:hover{border-color:var(--secondary);color:var(--secondary)}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="nav-brand">Velo<span>ra</span></a>
+            <div class="d-flex align-items-center gap-3">
+                <button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')"><i class="bi bi-moon-fill"></i></button>
+                <a href="index.html" class="btn-back"><i class="bi bi-arrow-left"></i> Retour</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container">
+            <span class="article-badge"><i class="bi bi-map"></i> Itinéraires</span>
+            <h1>Top 5 des pistes cyclables à Libreville</h1>
+            <div class="article-meta">
+                <span><i class="bi bi-calendar3"></i> 1 Mars 2026</span>
+                <span><i class="bi bi-clock"></i> 7 min de lecture</span>
+                <span><i class="bi bi-person"></i> Équipe Velora</span>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-content">
+        <p>
+            Libreville regorge de parcours magnifiques pour les cyclistes, des promenades tranquilles en bord de mer aux circuits plus sportifs dans les collines environnantes. Que vous soyez débutant ou cycliste confirmé, voici notre sélection des 5 meilleurs itinéraires à découvrir dans la capitale gabonaise.
+        </p>
+
+        <div class="route-card">
+            <div class="route-card-header">
+                <span class="route-number">1</span>
+                <div>
+                    <h3>Le Boulevard du Bord de Mer</h3>
+                    <span class="difficulty difficulty-easy">Facile</span>
+                </div>
+            </div>
+            <p>
+                L'itinéraire incontournable pour tous les cyclistes de Libreville. Le boulevard longe l'océan Atlantique sur plusieurs kilomètres, offrant une vue imprenable sur l'estuaire du Komo. La route est relativement plate et bien entretenue, parfaite pour les sorties matinales ou les balades en fin de journée quand la chaleur redescend.
+            </p>
+            <p>
+                Le parcours démarre du quartier de <strong>Glass</strong>, passe devant le Palais du Bord de Mer et continue jusqu'à la <strong>Pointe Denis</strong>. En chemin, vous croiserez de nombreux joggers et marcheurs — restez vigilant et courtois. Le meilleur moment pour rouler est entre <strong>6h et 8h du matin</strong>, avant la circulation dense.
+            </p>
+            <div class="route-stats">
+                <span class="route-stat"><i class="bi bi-signpost-2"></i> 12 km aller-retour</span>
+                <span class="route-stat"><i class="bi bi-clock"></i> 45 min - 1h</span>
+                <span class="route-stat"><i class="bi bi-arrow-up-right"></i> Dénivelé : ~20 m</span>
+                <span class="route-stat"><i class="bi bi-bicycle"></i> Tout type de vélo</span>
+            </div>
+        </div>
+
+        <div class="route-card">
+            <div class="route-card-header">
+                <span class="route-number">2</span>
+                <div>
+                    <h3>La Route de la Forêt de la Mondah</h3>
+                    <span class="difficulty difficulty-medium">Modéré</span>
+                </div>
+            </div>
+            <p>
+                Pour les cyclistes qui cherchent un peu plus de défi et un contact avec la nature, la route menant à la <strong>Forêt de la Mondah</strong> est un must. Située au nord de Libreville, cette réserve naturelle offre un cadre verdoyant exceptionnel. La route alterne entre sections plates et petites côtes qui mettront vos jambes à l'épreuve.
+            </p>
+            <p>
+                L'itinéraire part du quartier d'<strong>Alibandeng</strong> et s'enfonce progressivement dans la végétation tropicale. La chaussée est correcte mais peut comporter quelques nids-de-poule — restez attentif. Prévoyez suffisamment d'eau car il n'y a pas de point de ravitaillement sur la majorité du parcours. Le retour par le même chemin offre des perspectives différentes sur la forêt.
+            </p>
+            <div class="route-stats">
+                <span class="route-stat"><i class="bi bi-signpost-2"></i> 22 km aller-retour</span>
+                <span class="route-stat"><i class="bi bi-clock"></i> 1h30 - 2h</span>
+                <span class="route-stat"><i class="bi bi-arrow-up-right"></i> Dénivelé : ~150 m</span>
+                <span class="route-stat"><i class="bi bi-bicycle"></i> VTT ou route</span>
+            </div>
+        </div>
+
+        <div class="route-card">
+            <div class="route-card-header">
+                <span class="route-number">3</span>
+                <div>
+                    <h3>La Corniche d'Owendo</h3>
+                    <span class="difficulty difficulty-easy">Facile</span>
+                </div>
+            </div>
+            <p>
+                Moins connue que le bord de mer du centre-ville, la <strong>corniche d'Owendo</strong> offre pourtant un parcours charmant et bien moins fréquenté. La route suit la côte au sud de Libreville avec des vues panoramiques sur la baie et le port. C'est un excellent choix pour les familles et les débutants qui veulent rouler tranquillement.
+            </p>
+            <p>
+                Le parcours est plutôt plat avec quelques légères ondulations. On passe par des quartiers résidentiels calmes et quelques marchés locaux où vous pouvez faire une pause. Le week-end matin, la circulation est quasi inexistante, ce qui en fait un terrain de jeu idéal. Des pêcheurs locaux animent le paysage — un décor authentique.
+            </p>
+            <div class="route-stats">
+                <span class="route-stat"><i class="bi bi-signpost-2"></i> 15 km aller-retour</span>
+                <span class="route-stat"><i class="bi bi-clock"></i> 1h - 1h15</span>
+                <span class="route-stat"><i class="bi bi-arrow-up-right"></i> Dénivelé : ~40 m</span>
+                <span class="route-stat"><i class="bi bi-bicycle"></i> Tout type de vélo</span>
+            </div>
+        </div>
+
+        <div class="route-card">
+            <div class="route-card-header">
+                <span class="route-number">4</span>
+                <div>
+                    <h3>La Boucle du Cap Estérias</h3>
+                    <span class="difficulty difficulty-hard">Difficile</span>
+                </div>
+            </div>
+            <p>
+                Réservé aux cyclistes sportifs, cet itinéraire est le plus exigeant de notre sélection. La route vers le <strong>Cap Estérias</strong>, à l'extrême nord de la presqu'île de Libreville, grimpe et descend à travers des collines boisées avec des pentes pouvant atteindre 8 à 10%. La récompense : des points de vue à couper le souffle sur l'océan et une sensation d'évasion totale.
+            </p>
+            <p>
+                Le parcours forme une boucle partant de la <strong>route nationale 1</strong>, montant vers le Cap puis redescendant par la route côtière. Les derniers kilomètres avant le Cap sont les plus pentus mais aussi les plus beaux. Prévoyez des développements adaptés (un compact 34/32 minimum), beaucoup d'eau et de la crème solaire. Le bitume est bon dans l'ensemble mais certains tronçons nécessitent de la prudence.
+            </p>
+            <div class="route-stats">
+                <span class="route-stat"><i class="bi bi-signpost-2"></i> 35 km boucle</span>
+                <span class="route-stat"><i class="bi bi-clock"></i> 2h - 2h30</span>
+                <span class="route-stat"><i class="bi bi-arrow-up-right"></i> Dénivelé : ~400 m</span>
+                <span class="route-stat"><i class="bi bi-bicycle"></i> Vélo de route</span>
+            </div>
+        </div>
+
+        <div class="route-card">
+            <div class="route-card-header">
+                <span class="route-number">5</span>
+                <div>
+                    <h3>Le Tour de l'Arboretum de Sibang</h3>
+                    <span class="difficulty difficulty-easy">Facile</span>
+                </div>
+            </div>
+            <p>
+                Pour une sortie nature à deux pas du centre-ville, l'<strong>Arboretum de Sibang</strong> est un véritable havre de paix. Ce jardin botanique abrite des centaines d'espèces d'arbres tropicaux et offre des sentiers ombragés parfaits pour rouler au frais même aux heures les plus chaudes.
+            </p>
+            <p>
+                Le parcours autour et à travers l'arboretum est court mais agréable. Il se combine parfaitement avec une balade plus longue dans le quartier de Sibang. Le terrain est principalement plat avec des chemins en terre battue — un VTT ou un VTC est recommandé. C'est aussi un excellent spot pour initier les enfants au vélo dans un cadre sécurisé et verdoyant.
+            </p>
+            <div class="route-stats">
+                <span class="route-stat"><i class="bi bi-signpost-2"></i> 8 km</span>
+                <span class="route-stat"><i class="bi bi-clock"></i> 30 - 45 min</span>
+                <span class="route-stat"><i class="bi bi-arrow-up-right"></i> Dénivelé : ~15 m</span>
+                <span class="route-stat"><i class="bi bi-bicycle"></i> VTT / VTC</span>
+            </div>
+        </div>
+
+        <h2>Conseils de sécurité pour rouler à Libreville</h2>
+        <ul>
+            <li><strong>Portez toujours un casque</strong> — même sur les parcours faciles</li>
+            <li><strong>Roulez tôt le matin</strong> (6h-9h) ou en fin d'après-midi (16h-18h) pour éviter la chaleur et le trafic</li>
+            <li><strong>Hydratez-vous abondamment</strong> — prévoyez minimum 1 litre d'eau par heure sous le climat équatorial</li>
+            <li><strong>Utilisez des éclairages</strong> avant et arrière, même de jour — la visibilité est cruciale</li>
+            <li><strong>Emportez un kit anti-crevaison</strong> : chambre à air de rechange, démonte-pneus, mini-pompe</li>
+            <li><strong>Informez quelqu'un</strong> de votre itinéraire et de votre heure de retour estimée</li>
+            <li><strong>Appliquez de la crème solaire</strong> — même par temps couvert, les UV sont intenses</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-box-title"><i class="bi bi-people"></i> Roulez en groupe !</div>
+            <p>Rejoignez la communauté cycliste de Libreville ! Plusieurs groupes organisent des sorties régulières le week-end. Rouler en groupe est plus sûr, plus motivant, et c'est l'occasion de découvrir de nouveaux itinéraires. Passez nous voir chez Velora pour les détails.</p>
+        </div>
+
+        <blockquote>
+            "Le vélo est le meilleur moyen de découvrir Libreville sous un angle différent. Chaque coup de pédale révèle un nouveau coin de notre belle capitale." — L'équipe Velora
+        </blockquote>
+
+        <div class="article-nav">
+            <a href="article-entretien.html"><i class="bi bi-arrow-left"></i> Article précédent</a>
+            <a href="index.html">Retour à l'accueil <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Velora. Tous droits réservés. | <a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
